@@ -3,7 +3,7 @@ description: StreamYard is a professional live streaming and recording studio in
 image: https://streamyard.com/assets/images/logo.png
 url: https://streamyard.com
 created: '2024'
-modified: '2024'
+modified: '2026-03-16'
 apis:
 - name: StreamYard API
   description: API for managing live streams, broadcasts, destinations, and recordings programmatically
