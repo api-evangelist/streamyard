@@ -1,7 +1,5 @@
 name: StreamYard
-description: StreamYard is a professional live streaming and recording studio in
-  your browser. Stream directly to multiple platforms simultaneously, interview 
-  guests, share your screen, and more.
+description: StreamYard is a professional live streaming and recording studio in your browser. Stream directly to multiple platforms simultaneously, interview guests, share your screen, and more.
 image: https://streamyard.com/assets/images/logo.png
 url: https://streamyard.com
 created: '2024'
@@ -14,11 +12,11 @@ apis:
     humanURL: https://streamyard.com
     baseURL: https://api.streamyard.com
     tags:
-      - Live Streaming
-      - Video
       - Broadcasting
+      - Live Streaming
+      - Multi-Streaming
       - Recordings
-      - Multi-streaming
+      - Video
     properties:
       - type: Documentation
         url: https://developers.streamyard.com/docs
