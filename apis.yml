@@ -1,51 +1,54 @@
 name: StreamYard
-description: StreamYard is a professional live streaming and recording studio in your browser. Stream directly to multiple platforms simultaneously, interview guests, share your screen, and more.
+description: StreamYard is a professional live streaming and recording studio in
+  your browser. Stream directly to multiple platforms simultaneously, interview 
+  guests, share your screen, and more.
 image: https://streamyard.com/assets/images/logo.png
 url: https://streamyard.com
 created: '2024'
 modified: '2026-03-16'
 apis:
-- name: StreamYard API
-  description: API for managing live streams, broadcasts, destinations, and recordings programmatically
-  image: https://streamyard.com/assets/images/logo.png
-  humanURL: https://streamyard.com
-  baseURL: https://api.streamyard.com
-  tags:
-  - Live Streaming
-  - Video
-  - Broadcasting
-  - Recordings
-  - Multi-streaming
-  properties:
-  - type: Documentation
-    url: https://developers.streamyard.com/docs
-  - type: OpenAPI
-    url: https://api.streamyard.com/openapi.json
-  - type: Authentication
-    url: https://developers.streamyard.com/docs/authentication
-  contact:
-  - FN: StreamYard Support
-    email: support@streamyard.com
-    url: https://streamyard.com/resources/support
+  - name: StreamYard API
+    description: >-
+      API for managing live streams, broadcasts, destinations, and recordings programmatically.
+    image: https://streamyard.com/assets/images/logo.png
+    humanURL: https://streamyard.com
+    baseURL: https://api.streamyard.com
+    tags:
+      - Live Streaming
+      - Video
+      - Broadcasting
+      - Recordings
+      - Multi-streaming
+    properties:
+      - type: Documentation
+        url: https://developers.streamyard.com/docs
+      - type: OpenAPI
+        url: https://api.streamyard.com/openapi.json
+      - type: Authentication
+        url: https://developers.streamyard.com/docs/authentication
+    contact:
+      - FN: StreamYard Support
+        email: support@streamyard.com
+        url: https://streamyard.com/resources/support
 common:
-- type: Portal
-  url: https://streamyard.com/dashboard
-- type: Sign Up
-  url: https://streamyard.com/signup
-- type: Login
-  url: https://streamyard.com/login
-- type: Pricing
-  url: https://streamyard.com/pricing
-- type: Blog
-  url: https://streamyard.com/blog
-- type: Terms of Service
-  url: https://streamyard.com/resources/terms
-- type: Privacy Policy
-  url: https://streamyard.com/resources/privacy
-- type: Status
-  url: https://status.streamyard.com
-- type: Support
-  url: https://streamyard.com/resources/support
+  - type: Portal
+    url: https://streamyard.com/dashboard
+  - type: Sign Up
+    url: https://streamyard.com/signup
+  - type: Login
+    url: https://streamyard.com/login
+  - type: Pricing
+    url: https://streamyard.com/pricing
+  - type: Blog
+    url: https://streamyard.com/blog
+  - type: Terms of Service
+    url: https://streamyard.com/resources/terms
+  - type: Privacy Policy
+    url: https://streamyard.com/resources/privacy
+  - type: Status
+    url: https://status.streamyard.com
+  - type: Support
+    url: https://streamyard.com/resources/support
 maintainers:
-- FN: StreamYard Team
-  email: support@streamyard.com
+  - FN: StreamYard Team
+    email: support@streamyard.com
