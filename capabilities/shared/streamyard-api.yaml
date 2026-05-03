@@ -1,0 +1,376 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "StreamYard API"
+  description: >-
+    StreamYard API for managing live broadcasts, streaming destinations,
+    and recordings. Supports multi-platform streaming to YouTube, Facebook,
+    LinkedIn, Twitch, Twitter/X, and custom RTMP endpoints.
+  tags:
+    - Broadcasting
+    - Live Streaming
+    - Multi-Streaming
+    - Recordings
+    - Video
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      STREAMYARD_ACCESS_TOKEN: STREAMYARD_ACCESS_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: streamyard
+      baseUri: https://api.streamyard.com
+      description: "StreamYard API"
+      authentication:
+        type: bearer
+        token: "{{STREAMYARD_ACCESS_TOKEN}}"
+      resources:
+        - name: broadcasts
+          path: /broadcasts
+          description: "Broadcast management"
+          operations:
+            - name: list-broadcasts
+              method: GET
+              description: "List all broadcasts in the account"
+              inputParameters:
+                - name: page
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Page number"
+                - name: perPage
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Broadcasts per page"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-broadcast
+              method: POST
+              description: "Create a new broadcast"
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  title: "{{tools.title}}"
+                  description: "{{tools.description}}"
+                  type: "{{tools.type}}"
+                  scheduledAt: "{{tools.scheduledAt}}"
+        - name: broadcast
+          path: /broadcasts/{broadcastId}
+          description: "Single broadcast operations"
+          operations:
+            - name: get-broadcast
+              method: GET
+              description: "Get details of a specific broadcast"
+              inputParameters:
+                - name: broadcastId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The broadcast identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: update-broadcast
+              method: PATCH
+              description: "Update broadcast title or scheduled time"
+              inputParameters:
+                - name: broadcastId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The broadcast identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  title: "{{tools.title}}"
+                  description: "{{tools.description}}"
+                  scheduledAt: "{{tools.scheduledAt}}"
+            - name: delete-broadcast
+              method: DELETE
+              description: "Delete a broadcast"
+              inputParameters:
+                - name: broadcastId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The broadcast identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: broadcast-destinations
+          path: /broadcasts/{broadcastId}/destinations
+          description: "Broadcast destination management"
+          operations:
+            - name: list-broadcast-destinations
+              method: GET
+              description: "List destinations for a broadcast"
+              inputParameters:
+                - name: broadcastId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The broadcast identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: add-broadcast-destination
+              method: POST
+              description: "Add a streaming destination to a broadcast"
+              inputParameters:
+                - name: broadcastId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The broadcast identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  destinationId: "{{tools.destinationId}}"
+                  title: "{{tools.title}}"
+                  privacy: "{{tools.privacy}}"
+        - name: destinations
+          path: /destinations
+          description: "Connected streaming destinations"
+          operations:
+            - name: list-destinations
+              method: GET
+              description: "List all connected streaming destinations"
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: recordings
+          path: /recordings
+          description: "Recorded broadcasts"
+          operations:
+            - name: list-recordings
+              method: GET
+              description: "List all recordings"
+              inputParameters:
+                - name: page
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Page number"
+                - name: perPage
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Recordings per page"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: recording
+          path: /recordings/{recordingId}
+          description: "Single recording access"
+          operations:
+            - name: get-recording
+              method: GET
+              description: "Get details and download URL for a recording"
+              inputParameters:
+                - name: recordingId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The recording identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: streamyard-rest-api
+      resources:
+        - path: /v1/broadcasts
+          name: broadcasts
+          description: "Broadcast management"
+          operations:
+            - method: GET
+              name: list-broadcasts
+              description: "List broadcasts"
+              call: "streamyard.list-broadcasts"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-broadcast
+              description: "Create a broadcast"
+              call: "streamyard.create-broadcast"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/broadcasts/{broadcastId}
+          name: broadcast
+          description: "Single broadcast"
+          operations:
+            - method: GET
+              name: get-broadcast
+              description: "Get broadcast details"
+              call: "streamyard.get-broadcast"
+              with:
+                broadcastId: "rest.broadcastId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/destinations
+          name: destinations
+          description: "Streaming destinations"
+          operations:
+            - method: GET
+              name: list-destinations
+              description: "List destinations"
+              call: "streamyard.list-destinations"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/recordings
+          name: recordings
+          description: "Recordings"
+          operations:
+            - method: GET
+              name: list-recordings
+              description: "List recordings"
+              call: "streamyard.list-recordings"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: streamyard-mcp
+      transport: http
+      tools:
+        - name: list-broadcasts
+          description: "List all broadcasts in the StreamYard account"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "streamyard.list-broadcasts"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-broadcast
+          description: "Create a new live stream or recording broadcast"
+          hints:
+            readOnly: false
+          call: "streamyard.create-broadcast"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-broadcast
+          description: "Get details of a specific broadcast"
+          hints:
+            readOnly: true
+          call: "streamyard.get-broadcast"
+          with:
+            broadcastId: "tools.broadcastId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: update-broadcast
+          description: "Update a broadcast's title, description, or scheduled time"
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "streamyard.update-broadcast"
+          with:
+            broadcastId: "tools.broadcastId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-broadcast
+          description: "Delete a broadcast"
+          hints:
+            readOnly: false
+            destructive: true
+          call: "streamyard.delete-broadcast"
+          with:
+            broadcastId: "tools.broadcastId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-broadcast-destinations
+          description: "List streaming destinations for a broadcast"
+          hints:
+            readOnly: true
+          call: "streamyard.list-broadcast-destinations"
+          with:
+            broadcastId: "tools.broadcastId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: add-broadcast-destination
+          description: "Add a streaming platform destination to a broadcast"
+          hints:
+            readOnly: false
+          call: "streamyard.add-broadcast-destination"
+          with:
+            broadcastId: "tools.broadcastId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-destinations
+          description: "List all connected streaming platform accounts"
+          hints:
+            readOnly: true
+          call: "streamyard.list-destinations"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-recordings
+          description: "List all recordings from completed broadcasts"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "streamyard.list-recordings"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-recording
+          description: "Get details and download URL for a specific recording"
+          hints:
+            readOnly: true
+          call: "streamyard.get-recording"
+          with:
+            recordingId: "tools.recordingId"
+          outputParameters:
+            - type: object
+              mapping: "$."

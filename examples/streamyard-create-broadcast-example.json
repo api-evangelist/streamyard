@@ -1,0 +1,33 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.streamyard.com/broadcasts",
+    "headers": {
+      "Authorization": "Bearer sy-oauth-token-xxxxx",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "title": "Weekly Tech Talk - Episode 42",
+      "description": "Join us for our weekly discussion on the latest in developer tooling and APIs.",
+      "type": "live",
+      "scheduledAt": "2026-05-09T18:00:00Z"
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "id": "broadcast-abc123",
+      "title": "Weekly Tech Talk - Episode 42",
+      "description": "Join us for our weekly discussion on the latest in developer tooling and APIs.",
+      "status": "created",
+      "type": "live",
+      "scheduledAt": "2026-05-09T18:00:00Z",
+      "startedAt": null,
+      "endedAt": null,
+      "studioUrl": "https://streamyard.com/studio/broadcast-abc123",
+      "guestUrl": "https://streamyard.com/guest/xyz789",
+      "createdAt": "2026-05-02T10:00:00Z",
+      "destinations": []
+    }
+  }
+}

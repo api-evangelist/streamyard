@@ -1,0 +1,47 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.streamyard.com/broadcasts?page=1&perPage=10",
+    "headers": {
+      "Authorization": "Bearer sy-oauth-token-xxxxx"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": [
+        {
+          "id": "broadcast-abc123",
+          "title": "Weekly Tech Talk - Episode 42",
+          "status": "completed",
+          "type": "live",
+          "scheduledAt": "2026-05-02T18:00:00Z",
+          "startedAt": "2026-05-02T18:02:15Z",
+          "endedAt": "2026-05-02T19:15:30Z",
+          "studioUrl": "https://streamyard.com/studio/broadcast-abc123",
+          "guestUrl": null,
+          "createdAt": "2026-05-01T10:00:00Z",
+          "destinations": [
+            {
+              "id": "dest-1",
+              "platform": "youtube",
+              "status": "completed",
+              "viewerCount": 847,
+              "streamUrl": "https://www.youtube.com/watch?v=xxxxx"
+            },
+            {
+              "id": "dest-2",
+              "platform": "linkedin",
+              "status": "completed",
+              "viewerCount": 234,
+              "streamUrl": null
+            }
+          ]
+        }
+      ],
+      "total": 48,
+      "page": 1,
+      "perPage": 10
+    }
+  }
+}

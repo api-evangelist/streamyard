@@ -1,0 +1,107 @@
+extends:
+  - spectral:oas
+
+rules:
+  streamyard-operation-ids-camel-case:
+    description: >-
+      StreamYard API operationIds use camelCase (e.g., listBroadcasts,
+      createBroadcast, getBroadcast).
+    message: "OperationId '{{value}}' must use camelCase format"
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  streamyard-tags-title-case:
+    description: >-
+      All OpenAPI tags must use Title Case (e.g., 'Broadcasts', 'Destinations',
+      'Recordings').
+    message: "Tag '{{value}}' must use Title Case"
+    severity: warn
+    given: "$.tags[*].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z]*(\\s[A-Z][a-zA-Z]*)*$"
+
+  streamyard-oauth2-security:
+    description: >-
+      StreamYard API requires OAuth 2.0 authentication. The security scheme
+      must be streamyardBearerAuth using the authorization code flow.
+    message: "API must use streamyardBearerAuth OAuth 2.0 security scheme"
+    severity: warn
+    given: "$.components.securitySchemes"
+    then:
+      function: truthy
+      field: "streamyardBearerAuth"
+
+  streamyard-broadcast-id-path-param:
+    description: >-
+      Broadcast-specific endpoints use broadcastId as the path parameter
+      name for consistency.
+    message: "Broadcast path parameter must be named 'broadcastId'"
+    severity: warn
+    given: "$.components.parameters.BroadcastId"
+    then:
+      field: "name"
+      function: enumeration
+      functionOptions:
+        values:
+          - broadcastId
+
+  streamyard-delete-returns-204:
+    description: >-
+      DELETE operations in the StreamYard API return 204 No Content on
+      successful deletion.
+    message: "DELETE operation should return 204 on success"
+    severity: info
+    given: "$.paths[*][delete].responses"
+    then:
+      function: truthy
+      field: "204"
+
+  streamyard-broadcast-status-enum:
+    description: >-
+      Broadcast status must be one of the defined enum values: created, live,
+      completed, cancelled.
+    message: "Broadcast status must be a valid enum value"
+    severity: warn
+    given: "$.components.schemas.Broadcast.properties.status"
+    then:
+      function: truthy
+      field: "enum"
+
+  streamyard-platform-enum:
+    description: >-
+      Destination platform must be one of the supported streaming platforms:
+      youtube, facebook, linkedin, twitter, twitch, rtmp.
+    message: "Platform must be a defined enum value"
+    severity: warn
+    given: "$.components.schemas.Destination.properties.platform"
+    then:
+      function: truthy
+      field: "enum"
+
+  streamyard-pagination-camel-case:
+    description: >-
+      StreamYard uses camelCase pagination parameters: page and perPage
+      (not per_page or pageSize).
+    message: "Pagination parameter should use camelCase (perPage not per_page)"
+    severity: info
+    given: "$.paths[*][get].parameters[*].name"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "^per_page$|^pageSize$"
+
+  streamyard-operation-summaries-present:
+    description: >-
+      All operations must have a summary in Title Case format.
+    message: "Operation must have a summary"
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      function: truthy
+      field: "summary"

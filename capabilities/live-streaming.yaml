@@ -1,0 +1,256 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "StreamYard Live Streaming"
+  description: >-
+    Unified capability for managing StreamYard live streaming and recording
+    operations. Designed for content creators, media teams, and broadcast
+    automation platforms. Covers the full broadcast lifecycle from creation
+    through multi-platform destination setup, live monitoring, and post-broadcast
+    recording access.
+  tags:
+    - Broadcasting
+    - Live Streaming
+    - Multi-Streaming
+    - Recordings
+    - Video
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      STREAMYARD_ACCESS_TOKEN: STREAMYARD_ACCESS_TOKEN
+
+capability:
+  consumes:
+    - import: streamyard
+      location: ./shared/streamyard-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: streamyard-live-streaming-api
+      description: "Unified REST API for StreamYard live streaming and recording management."
+      resources:
+        - path: /v1/broadcasts
+          name: broadcasts
+          description: "Broadcast lifecycle management"
+          operations:
+            - method: GET
+              name: list-broadcasts
+              description: "List all broadcasts"
+              call: "streamyard.list-broadcasts"
+              with:
+                page: "rest.page"
+                perPage: "rest.perPage"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-broadcast
+              description: "Create a new broadcast"
+              call: "streamyard.create-broadcast"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/broadcasts/{broadcastId}
+          name: broadcast
+          description: "Single broadcast management"
+          operations:
+            - method: GET
+              name: get-broadcast
+              description: "Get broadcast details and status"
+              call: "streamyard.get-broadcast"
+              with:
+                broadcastId: "rest.broadcastId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: PATCH
+              name: update-broadcast
+              description: "Update broadcast metadata"
+              call: "streamyard.update-broadcast"
+              with:
+                broadcastId: "rest.broadcastId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: DELETE
+              name: delete-broadcast
+              description: "Delete a broadcast"
+              call: "streamyard.delete-broadcast"
+              with:
+                broadcastId: "rest.broadcastId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/broadcasts/{broadcastId}/destinations
+          name: broadcast-destinations
+          description: "Multi-platform streaming destinations"
+          operations:
+            - method: GET
+              name: list-broadcast-destinations
+              description: "List destinations for a broadcast"
+              call: "streamyard.list-broadcast-destinations"
+              with:
+                broadcastId: "rest.broadcastId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: add-broadcast-destination
+              description: "Add a streaming destination"
+              call: "streamyard.add-broadcast-destination"
+              with:
+                broadcastId: "rest.broadcastId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/destinations
+          name: destinations
+          description: "Connected streaming platform accounts"
+          operations:
+            - method: GET
+              name: list-destinations
+              description: "List connected platform accounts"
+              call: "streamyard.list-destinations"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/recordings
+          name: recordings
+          description: "Post-broadcast recordings"
+          operations:
+            - method: GET
+              name: list-recordings
+              description: "List all recordings"
+              call: "streamyard.list-recordings"
+              with:
+                page: "rest.page"
+                perPage: "rest.perPage"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/recordings/{recordingId}
+          name: recording
+          description: "Single recording access"
+          operations:
+            - method: GET
+              name: get-recording
+              description: "Get recording details and download URL"
+              call: "streamyard.get-recording"
+              with:
+                recordingId: "rest.recordingId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: streamyard-live-streaming-mcp
+      transport: http
+      description: "MCP server for AI-assisted StreamYard broadcast management."
+      tools:
+        - name: list-broadcasts
+          description: "List all broadcasts in the StreamYard account including live and completed"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "streamyard.list-broadcasts"
+          with:
+            page: "tools.page"
+            perPage: "tools.perPage"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-broadcast
+          description: "Create a new live stream or recording session"
+          hints:
+            readOnly: false
+          call: "streamyard.create-broadcast"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-broadcast
+          description: "Get details and current status of a broadcast"
+          hints:
+            readOnly: true
+          call: "streamyard.get-broadcast"
+          with:
+            broadcastId: "tools.broadcastId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: update-broadcast
+          description: "Update a broadcast title, description, or scheduled time"
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "streamyard.update-broadcast"
+          with:
+            broadcastId: "tools.broadcastId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-broadcast
+          description: "Delete a broadcast permanently"
+          hints:
+            readOnly: false
+            destructive: true
+          call: "streamyard.delete-broadcast"
+          with:
+            broadcastId: "tools.broadcastId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-broadcast-destinations
+          description: "List the streaming platforms added to a specific broadcast"
+          hints:
+            readOnly: true
+          call: "streamyard.list-broadcast-destinations"
+          with:
+            broadcastId: "tools.broadcastId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: add-broadcast-destination
+          description: "Add a streaming platform (YouTube, Facebook, LinkedIn, Twitch) to a broadcast"
+          hints:
+            readOnly: false
+          call: "streamyard.add-broadcast-destination"
+          with:
+            broadcastId: "tools.broadcastId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-connected-destinations
+          description: "List all connected streaming platform accounts available for broadcasting"
+          hints:
+            readOnly: true
+          call: "streamyard.list-destinations"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-recordings
+          description: "List all recordings from completed broadcasts"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "streamyard.list-recordings"
+          with:
+            page: "tools.page"
+            perPage: "tools.perPage"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-recording-download
+          description: "Get a recording with its time-limited download URL"
+          hints:
+            readOnly: true
+          call: "streamyard.get-recording"
+          with:
+            recordingId: "tools.recordingId"
+          outputParameters:
+            - type: object
+              mapping: "$."

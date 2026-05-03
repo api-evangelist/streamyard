@@ -1,0 +1,112 @@
+vocabulary:
+  name: StreamYard Vocabulary
+  description: >-
+    Domain vocabulary for StreamYard, the professional browser-based live
+    streaming and recording studio platform.
+  version: '1.0.0'
+  created: '2026-05-02'
+  modified: '2026-05-02'
+
+terms:
+  - term: Broadcast
+    definition: >-
+      A live streaming or recording session in StreamYard. A broadcast can
+      simultaneously send content to multiple streaming destinations. Broadcasts
+      progress through statuses: created → live → completed.
+    synonyms:
+      - Show
+      - Stream
+      - Session
+
+  - term: Destination
+    definition: >-
+      A streaming platform account connected to StreamYard where broadcasts
+      are sent. Supported destinations include YouTube, Facebook, LinkedIn,
+      Twitter/X, Twitch, and custom RTMP endpoints. Multiple destinations
+      enable simultaneous multi-streaming.
+    synonyms:
+      - Streaming Destination
+      - Platform Account
+
+  - term: Multi-Streaming
+    definition: >-
+      The practice of simultaneously broadcasting live content to multiple
+      platforms at once. StreamYard enables multi-streaming to up to 8
+      destinations simultaneously from a single broadcast.
+    synonyms:
+      - Simulcasting
+      - Multi-Platform Streaming
+
+  - term: Studio
+    definition: >-
+      The browser-based interface where broadcasts are produced. The studio
+      allows hosts to manage guests, display graphics, share screens, and
+      control the live presentation. Accessed via the studioUrl.
+
+  - term: Guest
+    definition: >-
+      A remote participant invited to appear in a broadcast. Guests join via
+      a guestUrl link without needing a StreamYard account. Up to 8 guests
+      can join simultaneously.
+
+  - term: Recording
+    definition: >-
+      A video file captured from a completed broadcast. Recordings are
+      stored on StreamYard's servers and can be downloaded via time-limited
+      URLs. Local recordings are also available for download during live sessions.
+    synonyms:
+      - Local Recording
+
+  - term: RTMP
+    definition: >-
+      Real-Time Messaging Protocol — a streaming protocol used to send
+      video/audio to custom streaming endpoints. StreamYard supports custom
+      RTMP destinations for platforms not natively integrated.
+    synonyms:
+      - Real-Time Messaging Protocol
+      - Custom RTMP
+
+  - term: Overlay
+    definition: >-
+      A graphic element displayed on top of the broadcast video. Overlays
+      include banners, lower thirds, logos, and full-screen graphics. Part
+      of the StreamYard brand assets.
+    synonyms:
+      - Graphic
+      - Banner
+      - Lower Third
+
+  - term: Brand Kit
+    definition: >-
+      A collection of visual assets in StreamYard including logos, backgrounds,
+      overlays, color schemes, and fonts that define a consistent visual style
+      for broadcasts.
+
+  - term: Ticker
+    definition: >-
+      A scrolling text banner displayed during a broadcast for announcements,
+      social media handles, hashtags, or other text information.
+
+  - term: Split Screen
+    definition: >-
+      A layout that displays multiple participants simultaneously in separate
+      panels within the broadcast frame. StreamYard supports various split
+      screen configurations.
+
+  - term: Greenroom
+    definition: >-
+      The private waiting area where guests join before being brought onto
+      the live broadcast. Guests in the greenroom can see each other and chat
+      but are not visible to viewers until the host adds them to the broadcast.
+
+  - term: Viewer Count
+    definition: >-
+      The number of concurrent viewers watching a broadcast on a specific
+      destination platform. Available in the API as viewerCount for each
+      broadcast destination during live streaming.
+
+  - term: Privacy Setting
+    definition: >-
+      The visibility control for a broadcast on a destination platform.
+      Options include public (anyone can view), unlisted (visible with link),
+      and private (only specific people). Platform support varies.

@@ -1,0 +1,102 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "streamyard": "https://streamyard.com/vocab/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "Broadcast": {
+      "@id": "schema:BroadcastEvent",
+      "@context": {
+        "id": "@id",
+        "title": "schema:name",
+        "description": "schema:description",
+        "status": {
+          "@id": "streamyard:broadcastStatus",
+          "@type": "xsd:string"
+        },
+        "type": {
+          "@id": "streamyard:broadcastType",
+          "@type": "xsd:string"
+        },
+        "scheduledAt": {
+          "@id": "schema:startDate",
+          "@type": "xsd:dateTime"
+        },
+        "startedAt": {
+          "@id": "streamyard:actualStartTime",
+          "@type": "xsd:dateTime"
+        },
+        "endedAt": {
+          "@id": "streamyard:actualEndTime",
+          "@type": "xsd:dateTime"
+        },
+        "studioUrl": {
+          "@id": "schema:url",
+          "@type": "@id"
+        },
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "destinations": {
+          "@id": "streamyard:hasDestination"
+        }
+      }
+    },
+
+    "Destination": {
+      "@id": "streamyard:StreamingDestination",
+      "@context": {
+        "id": "@id",
+        "platform": {
+          "@id": "streamyard:platform",
+          "@type": "xsd:string"
+        },
+        "name": "schema:name",
+        "accountName": "streamyard:accountName",
+        "isConnected": {
+          "@id": "streamyard:isConnected",
+          "@type": "xsd:boolean"
+        },
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Recording": {
+      "@id": "schema:VideoObject",
+      "@context": {
+        "id": "@id",
+        "title": "schema:name",
+        "duration": {
+          "@id": "schema:duration",
+          "@type": "xsd:integer"
+        },
+        "fileSize": {
+          "@id": "schema:contentSize",
+          "@type": "xsd:integer"
+        },
+        "downloadUrl": {
+          "@id": "schema:contentUrl",
+          "@type": "@id"
+        },
+        "thumbnailUrl": {
+          "@id": "schema:thumbnailUrl",
+          "@type": "@id"
+        },
+        "status": {
+          "@id": "streamyard:recordingStatus",
+          "@type": "xsd:string"
+        },
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    }
+  }
+}

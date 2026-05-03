@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://developers.streamyard.com/schemas/broadcast.json",
+  "title": "StreamYard Broadcast",
+  "description": "Represents a live streaming or recording session in StreamYard. Broadcasts can simultaneously stream to multiple platforms.",
+  "type": "object",
+  "required": ["id", "title", "status"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the broadcast"
+    },
+    "title": {
+      "type": "string",
+      "description": "The title of the broadcast"
+    },
+    "description": {
+      "type": ["string", "null"],
+      "description": "Optional description of the broadcast"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["created", "live", "completed", "cancelled"],
+      "description": "Current broadcast status"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["live", "recording"],
+      "description": "Whether this is a live stream or recording session"
+    },
+    "scheduledAt": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Scheduled start time (ISO 8601)"
+    },
+    "startedAt": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Actual start time"
+    },
+    "endedAt": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Time the broadcast ended"
+    },
+    "studioUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to join the broadcast studio"
+    },
+    "guestUrl": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "Shareable URL for guests to join"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the broadcast was created"
+    },
+    "destinations": {
+      "type": "array",
+      "description": "Streaming destinations for this broadcast",
+      "items": {
+        "$ref": "#/$defs/BroadcastDestination"
+      }
+    }
+  },
+  "$defs": {
+    "BroadcastDestination": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "platform": {
+          "type": "string",
+          "enum": ["youtube", "facebook", "linkedin", "twitter", "twitch", "rtmp"]
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "live", "completed", "error"]
+        },
+        "viewerCount": {"type": ["integer", "null"]},
+        "streamUrl": {"type": ["string", "null"], "format": "uri"}
+      }
+    }
+  }
+}

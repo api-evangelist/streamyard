@@ -1,0 +1,21 @@
+{
+  "name": "Broadcast",
+  "description": "A StreamYard live stream or recording session that can simultaneously reach multiple platforms.",
+  "fields": [
+    {"name": "id", "type": "string", "required": true, "description": "Unique broadcast identifier"},
+    {"name": "title", "type": "string", "required": true, "description": "Broadcast title"},
+    {"name": "description", "type": "string", "required": false, "nullable": true, "description": "Broadcast description"},
+    {"name": "status", "type": "string", "required": true, "enum": ["created", "live", "completed", "cancelled"], "description": "Current status"},
+    {"name": "type", "type": "string", "required": false, "enum": ["live", "recording"], "description": "Live stream or recording session"},
+    {"name": "scheduledAt", "type": "string", "format": "date-time", "required": false, "nullable": true, "description": "Scheduled start time"},
+    {"name": "startedAt", "type": "string", "format": "date-time", "required": false, "nullable": true, "description": "Actual start time"},
+    {"name": "endedAt", "type": "string", "format": "date-time", "required": false, "nullable": true, "description": "End time"},
+    {"name": "studioUrl", "type": "string", "required": false, "description": "Studio join URL"},
+    {"name": "guestUrl", "type": "string", "required": false, "nullable": true, "description": "Guest invite URL"},
+    {"name": "createdAt", "type": "string", "format": "date-time", "required": false, "description": "Creation timestamp"}
+  ],
+  "relationships": [
+    {"name": "destinations", "type": "array", "target": "BroadcastDestination", "description": "Platforms being streamed to"},
+    {"name": "recordings", "type": "array", "target": "Recording", "description": "Recordings from this broadcast"}
+  ]
+}
