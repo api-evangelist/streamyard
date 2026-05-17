@@ -57,7 +57,7 @@ common:
     url: https://developers.streamyard.com/docs
   - type: Dashboard
     url: https://streamyard.com/dashboard
-  - type: Sign Up
+  - type: SignUp
     url: https://streamyard.com/signup
   - type: Login
     url: https://streamyard.com/login
@@ -65,11 +65,11 @@ common:
     url: https://streamyard.com/pricing
   - type: Blog
     url: https://streamyard.com/blog
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://streamyard.com/resources/terms
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://streamyard.com/resources/privacy
-  - type: Status
+  - type: StatusPage
     url: https://status.streamyard.com
   - type: Support
     url: https://streamyard.com/resources/support
