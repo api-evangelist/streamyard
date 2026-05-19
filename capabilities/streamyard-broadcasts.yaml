@@ -1,0 +1,321 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: StreamYard API — Broadcasts
+  description: 'StreamYard API — Broadcasts. 8 operations. Lead operation: List Broadcasts. Self-contained Naftiko capability
+    covering one Streamyard business surface.'
+  tags:
+  - Streamyard
+  - Broadcasts
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    STREAMYARD_API_KEY: STREAMYARD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: streamyard-broadcasts
+    baseUri: https://api.streamyard.com
+    description: StreamYard API — Broadcasts business capability. Self-contained, no shared references.
+    resources:
+    - name: broadcasts
+      path: /broadcasts
+      operations:
+      - name: listbroadcasts
+        method: GET
+        description: List Broadcasts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+          description: Page number for pagination
+        - name: perPage
+          in: query
+          type: integer
+          description: Number of broadcasts per page (max 100)
+      - name: createbroadcast
+        method: POST
+        description: Create Broadcast
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: broadcasts-broadcastId
+      path: /broadcasts/{broadcastId}
+      operations:
+      - name: getbroadcast
+        method: GET
+        description: Get Broadcast
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatebroadcast
+        method: PATCH
+        description: Update Broadcast
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletebroadcast
+        method: DELETE
+        description: Delete Broadcast
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: broadcasts-broadcastId-destinations
+      path: /broadcasts/{broadcastId}/destinations
+      operations:
+      - name: listbroadcastdestinations
+        method: GET
+        description: List Broadcast Destinations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: addbroadcastdestination
+        method: POST
+        description: Add Broadcast Destination
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: broadcasts-broadcastId-destinations-destinationId
+      path: /broadcasts/{broadcastId}/destinations/{destinationId}
+      operations:
+      - name: removebroadcastdestination
+        method: DELETE
+        description: Remove Broadcast Destination
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: destinationId
+          in: path
+          type: string
+          description: The identifier of the destination
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.STREAMYARD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: streamyard-broadcasts-rest
+    port: 8080
+    description: REST adapter for StreamYard API — Broadcasts. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/broadcasts
+      name: broadcasts
+      description: REST surface for broadcasts.
+      operations:
+      - method: GET
+        name: listbroadcasts
+        description: List Broadcasts
+        call: streamyard-broadcasts.listbroadcasts
+        with:
+          page: rest.page
+          perPage: rest.perPage
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createbroadcast
+        description: Create Broadcast
+        call: streamyard-broadcasts.createbroadcast
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/broadcasts/{broadcastid}
+      name: broadcasts-broadcastid
+      description: REST surface for broadcasts-broadcastId.
+      operations:
+      - method: GET
+        name: getbroadcast
+        description: Get Broadcast
+        call: streamyard-broadcasts.getbroadcast
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatebroadcast
+        description: Update Broadcast
+        call: streamyard-broadcasts.updatebroadcast
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletebroadcast
+        description: Delete Broadcast
+        call: streamyard-broadcasts.deletebroadcast
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/broadcasts/{broadcastid}/destinations
+      name: broadcasts-broadcastid-destinations
+      description: REST surface for broadcasts-broadcastId-destinations.
+      operations:
+      - method: GET
+        name: listbroadcastdestinations
+        description: List Broadcast Destinations
+        call: streamyard-broadcasts.listbroadcastdestinations
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: addbroadcastdestination
+        description: Add Broadcast Destination
+        call: streamyard-broadcasts.addbroadcastdestination
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/broadcasts/{broadcastid}/destinations/{destinationid}
+      name: broadcasts-broadcastid-destinations-destinationid
+      description: REST surface for broadcasts-broadcastId-destinations-destinationId.
+      operations:
+      - method: DELETE
+        name: removebroadcastdestination
+        description: Remove Broadcast Destination
+        call: streamyard-broadcasts.removebroadcastdestination
+        with:
+          destinationId: rest.destinationId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: streamyard-broadcasts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for StreamYard API — Broadcasts. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-broadcasts
+      description: List Broadcasts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: streamyard-broadcasts.listbroadcasts
+      with:
+        page: tools.page
+        perPage: tools.perPage
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-broadcast
+      description: Create Broadcast
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: streamyard-broadcasts.createbroadcast
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-broadcast
+      description: Get Broadcast
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: streamyard-broadcasts.getbroadcast
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-broadcast
+      description: Update Broadcast
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: streamyard-broadcasts.updatebroadcast
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-broadcast
+      description: Delete Broadcast
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: streamyard-broadcasts.deletebroadcast
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-broadcast-destinations
+      description: List Broadcast Destinations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: streamyard-broadcasts.listbroadcastdestinations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-broadcast-destination
+      description: Add Broadcast Destination
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: streamyard-broadcasts.addbroadcastdestination
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: remove-broadcast-destination
+      description: Remove Broadcast Destination
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: streamyard-broadcasts.removebroadcastdestination
+      with:
+        destinationId: tools.destinationId
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,147 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: StreamYard API — Destinations
+  description: 'StreamYard API — Destinations. 3 operations. Lead operation: List Destinations. Self-contained Naftiko capability
+    covering one Streamyard business surface.'
+  tags:
+  - Streamyard
+  - Destinations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    STREAMYARD_API_KEY: STREAMYARD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: streamyard-destinations
+    baseUri: https://api.streamyard.com
+    description: StreamYard API — Destinations business capability. Self-contained, no shared references.
+    resources:
+    - name: destinations
+      path: /destinations
+      operations:
+      - name: listdestinations
+        method: GET
+        description: List Destinations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: destinations-destinationId
+      path: /destinations/{destinationId}
+      operations:
+      - name: getdestination
+        method: GET
+        description: Get Destination
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: destinationId
+          in: path
+          type: string
+          description: The identifier of the destination
+          required: true
+      - name: deletedestination
+        method: DELETE
+        description: Delete Destination
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: destinationId
+          in: path
+          type: string
+          description: The identifier of the destination
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.STREAMYARD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: streamyard-destinations-rest
+    port: 8080
+    description: REST adapter for StreamYard API — Destinations. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/destinations
+      name: destinations
+      description: REST surface for destinations.
+      operations:
+      - method: GET
+        name: listdestinations
+        description: List Destinations
+        call: streamyard-destinations.listdestinations
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/destinations/{destinationid}
+      name: destinations-destinationid
+      description: REST surface for destinations-destinationId.
+      operations:
+      - method: GET
+        name: getdestination
+        description: Get Destination
+        call: streamyard-destinations.getdestination
+        with:
+          destinationId: rest.destinationId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletedestination
+        description: Delete Destination
+        call: streamyard-destinations.deletedestination
+        with:
+          destinationId: rest.destinationId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: streamyard-destinations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for StreamYard API — Destinations. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-destinations
+      description: List Destinations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: streamyard-destinations.listdestinations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-destination
+      description: Get Destination
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: streamyard-destinations.getdestination
+      with:
+        destinationId: tools.destinationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-destination
+      description: Delete Destination
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: streamyard-destinations.deletedestination
+      with:
+        destinationId: tools.destinationId
+      outputParameters:
+      - type: object
+        mapping: $.
