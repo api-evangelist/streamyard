@@ -1,88 +1,14 @@
-# StreamYard
+# StreamYard (streamyard)
 
-StreamYard is a professional live streaming and recording studio in your browser. Stream directly to multiple platforms simultaneously (YouTube, Facebook, LinkedIn, Twitch, Twitter/X), interview guests, share your screen, and manage brand overlays. The StreamYard API enables programmatic management of broadcasts, destinations, and recordings.
+StreamYard is a professional live streaming and recording studio in the browser. Stream directly to multiple platforms simultaneously including YouTube, Facebook, LinkedIn, Twitch, and Twitter/X. Interview remote guests, share screens, display overlays, and manage brand assets. The StreamYard API enables programmatic management of broadcasts, destinations, and recordings.
 
-**Human URL:** [https://streamyard.com](https://streamyard.com)  
-**Base URL:** `https://api.streamyard.com`
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/streamyard/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/streamyard/refs/heads/main/apis.yml)
 
-## Links
+## Scope
 
-- [Developer Portal](https://developers.streamyard.com)
-- [API Documentation](https://developers.streamyard.com/docs)
-- [Authentication](https://developers.streamyard.com/docs/authentication)
-- [Dashboard](https://streamyard.com/dashboard)
-- [Pricing](https://streamyard.com/pricing)
-- [Blog](https://streamyard.com/blog)
-- [Status](https://status.streamyard.com)
-- [Terms of Service](https://streamyard.com/resources/terms)
-
-## APIs
-
-### StreamYard API
-
-Programmatic access to manage live broadcasts, streaming destinations, and recordings. OAuth 2.0 authentication with scope-based access.
-
-- [OpenAPI Spec](openapi/streamyard-openapi.yml)
-- [Documentation](https://developers.streamyard.com/docs)
-
-## Artifacts
-
-### OpenAPI Specifications
-
-| File | Description |
-|---|---|
-| [streamyard-openapi.yml](openapi/streamyard-openapi.yml) | StreamYard API — broadcasts, destinations, recordings |
-
-### JSON Schema
-
-| File | Description |
-|---|---|
-| [streamyard-broadcast-schema.json](json-schema/streamyard-broadcast-schema.json) | JSON Schema for StreamYard broadcast objects |
-
-### JSON Structure
-
-| File | Description |
-|---|---|
-| [streamyard-broadcast-structure.json](json-structure/streamyard-broadcast-structure.json) | Field structure for broadcast objects |
-
-### JSON-LD Context
-
-| File | Description |
-|---|---|
-| [streamyard-context.jsonld](json-ld/streamyard-context.jsonld) | JSON-LD context mapping StreamYard vocabulary to schema.org |
-
-### Examples
-
-| File | Description |
-|---|---|
-| [streamyard-create-broadcast-example.json](examples/streamyard-create-broadcast-example.json) | Create a new broadcast |
-| [streamyard-list-broadcasts-example.json](examples/streamyard-list-broadcasts-example.json) | List broadcasts with destinations |
-
-### Spectral Rules
-
-| File | Description |
-|---|---|
-| [streamyard-rules.yml](rules/streamyard-rules.yml) | Spectral ruleset enforcing StreamYard API conventions |
-
-### Naftiko Capabilities
-
-#### Shared Definitions
-
-| File | Description |
-|---|---|
-| [capabilities/shared/streamyard-api.yaml](capabilities/shared/streamyard-api.yaml) | StreamYard API — broadcasts, destinations, recordings |
-
-#### Workflow Capabilities
-
-| File | Description |
-|---|---|
-| [capabilities/live-streaming.yaml](capabilities/live-streaming.yaml) | Live streaming and broadcast management workflow (10 tools) |
-
-### Vocabulary
-
-| File | Description |
-|---|---|
-| [vocabulary/streamyard-vocabulary.yml](vocabulary/streamyard-vocabulary.yml) | StreamYard domain vocabulary and live streaming terminology |
+- **Type:** Index
+- **Position:** Consumer
+- **Access:** 3rd-Party
 
 ## Tags
 
@@ -92,7 +18,58 @@ Programmatic access to manage live broadcasts, streaming destinations, and recor
 - Recordings
 - Video
 
+## Timestamps
+
+- **Created:** 2024-01-01
+- **Modified:** 2026-05-19
+
+## APIs
+
+### StreamYard API
+
+The StreamYard API provides programmatic access to manage live broadcasts and recordings. Create and manage broadcasts, add streaming destinations (YouTube, Facebook, LinkedIn, Twitch, Twitter/X, custom RTMP), access recordings, and manage connected destination accounts. Authentication uses OAuth 2.0 with scope-based access control.
+
+- **Human URL:** [https://developers.streamyard.com/docs](https://developers.streamyard.com/docs)
+- **Base URL:** `https://api.streamyard.com`
+
+#### Tags
+
+- Broadcasting
+- Live Streaming
+- Multi-Streaming
+- Recordings
+- Video
+
+#### Properties
+
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/streamyard/refs/heads/main/openapi/streamyard-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Documentation](https://developers.streamyard.com/docs)
+- [Authentication](https://developers.streamyard.com/docs/authentication)
+- [OpenAPI](https://api.streamyard.com/openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/streamyard.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/streamyard.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+## Common Properties
+
+- [GitHub Organization](https://github.com/streamyard)
+- [LinkedIn](https://www.linkedin.com/company/streamyard)
+- [Website](https://streamyard.com)
+- [Developer  Portal](https://developers.streamyard.com)
+- [Documentation](https://developers.streamyard.com/docs)
+- [Dashboard](https://streamyard.com/dashboard)
+- [Sign Up](https://streamyard.com/signup)
+- [Login](https://streamyard.com/login)
+- [Pricing](https://streamyard.com/pricing)
+- [Blog](https://streamyard.com/blog)
+- [Terms of Service](https://streamyard.com/resources/terms)
+- [Privacy Policy](https://streamyard.com/resources/privacy)
+- [Status Page](https://status.streamyard.com)
+- [Support](https://streamyard.com/resources/support)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/streamyard/refs/heads/main/openapi/streamyard-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/streamyard/refs/heads/main/json-schema/streamyard-broadcast-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [J S O N L D Context](https://raw.githubusercontent.com/api-evangelist/streamyard/refs/heads/main/json-ld/streamyard-context.jsonld)
+
 ## Maintainers
 
-**FN:** Kin Lane  
+**FN:** Kin Lane
 **Email:** kin@apievangelist.com

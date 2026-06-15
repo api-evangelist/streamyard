@@ -1,9 +1,10 @@
 aid: streamyard
 name: StreamYard
-description: StreamYard is a professional live streaming and recording studio in the browser. Stream directly to multiple
-  platforms simultaneously including YouTube, Facebook, LinkedIn, Twitch, and Twitter/X. Interview remote guests, share screens,
-  display overlays, and manage brand assets. The StreamYard API enables programmatic management of broadcasts, destinations,
-  and recordings.
+description: >-
+  StreamYard is a professional live streaming and recording studio in the browser. Stream directly to multiple platforms
+  simultaneously including YouTube, Facebook, LinkedIn, Twitch, and Twitter/X. Interview remote guests, share screens,
+  display overlays, and manage brand assets. The StreamYard API enables programmatic management of broadcasts,
+  destinations, and recordings.
 url: https://raw.githubusercontent.com/api-evangelist/streamyard/refs/heads/main/apis.yml
 image: https://streamyard.com/assets/images/logo.png
 tags:
@@ -21,32 +22,28 @@ specificationVersion: '0.19'
 apis:
   - aid: streamyard:streamyard-api
     name: StreamYard API
-    description: The StreamYard API provides programmatic access to manage live broadcasts and recordings. Create and manage
-      broadcasts, add streaming destinations (YouTube, Facebook, LinkedIn, Twitch, Twitter/X, custom RTMP), access recordings,
-      and manage connected destination accounts. Authentication uses OAuth 2.0 with scope-based access control.
+    description: >-
+      The StreamYard API provides programmatic access to manage live broadcasts and recordings. Create and manage
+      broadcasts, add streaming destinations (YouTube, Facebook, LinkedIn, Twitch, Twitter/X, custom RTMP), access
+      recordings, and manage connected destination accounts. Authentication uses OAuth 2.0 with scope-based access
+      control.
     humanURL: https://developers.streamyard.com/docs
     baseURL: https://api.streamyard.com
     tags:
-    - Broadcasting
-    - Live Streaming
-    - Multi-Streaming
-    - Recordings
-    - Video
+      - Broadcasting
+      - Live Streaming
+      - Multi-Streaming
+      - Recordings
+      - Video
     properties:
-    - type: OpenAPI
-      url: https://raw.githubusercontent.com/api-evangelist/streamyard/refs/heads/main/openapi/streamyard-openapi.yml
-    - type: Documentation
-      url: https://developers.streamyard.com/docs
-    - type: Authentication
-      url: https://developers.streamyard.com/docs/authentication
-    - type: OpenAPI
-      url: https://api.streamyard.com/openapi.json
-    - type: NaftikoCapability
-      url: capabilities/streamyard-broadcasts.yaml
-    - type: NaftikoCapability
-      url: capabilities/streamyard-destinations.yaml
-    - type: NaftikoCapability
-      url: capabilities/streamyard-recordings.yaml
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/streamyard/refs/heads/main/openapi/streamyard-openapi.yml
+      - type: Documentation
+        url: https://developers.streamyard.com/docs
+      - type: Authentication
+        url: https://developers.streamyard.com/docs/authentication
+      - type: OpenAPI
+        url: https://api.streamyard.com/openapi.json
 common:
   - type: GitHubOrganization
     url: https://github.com/streamyard
@@ -79,7 +76,8 @@ common:
   - type: OpenAPI
     url: https://raw.githubusercontent.com/api-evangelist/streamyard/refs/heads/main/openapi/streamyard-openapi.yml
   - type: JSONSchema
-    url: https://raw.githubusercontent.com/api-evangelist/streamyard/refs/heads/main/json-schema/streamyard-broadcast-schema.json
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/streamyard/refs/heads/main/json-schema/streamyard-broadcast-schema.json
   - type: JSONLDContext
     url: https://raw.githubusercontent.com/api-evangelist/streamyard/refs/heads/main/json-ld/streamyard-context.jsonld
 maintainers:
