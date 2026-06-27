@@ -51,13 +51,13 @@ common:
     url: https://www.linkedin.com/company/streamyard
   - type: Website
     url: https://streamyard.com
-  - type: Developer Portal
+  - type: DeveloperPortal
     url: https://developers.streamyard.com
   - type: Documentation
     url: https://developers.streamyard.com/docs
   - type: Dashboard
     url: https://streamyard.com/dashboard
-  - type: SignUp
+  - type: Signup
     url: https://streamyard.com/signup
   - type: Login
     url: https://streamyard.com/login
