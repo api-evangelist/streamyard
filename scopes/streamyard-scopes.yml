@@ -1,0 +1,30 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/streamyard-openapi.yml
+schemes:
+- name: streamyardBearerAuth
+  source: openapi/streamyard-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://streamyard.com/oauth/authorize
+    tokenUrl: https://streamyard.com/oauth/token
+  description: OAuth 2.0 Bearer token. Authenticate via StreamYard's OAuth flow at https://streamyard.com/oauth/authorize.
+scopes:
+- scope: broadcasts
+  description: Create and manage broadcasts
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/streamyard-openapi.yml
+- scope: destinations
+  description: View and manage streaming destinations
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/streamyard-openapi.yml
+- scope: recordings
+  description: Access and download recordings
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/streamyard-openapi.yml

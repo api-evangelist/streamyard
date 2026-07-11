@@ -45,6 +45,10 @@ apis:
       - type: OpenAPI
         url: https://api.streamyard.com/openapi.json
 common:
+  - type: Authentication
+    url: authentication/streamyard-authentication.yml
+  - type: OAuthScopes
+    url: scopes/streamyard-scopes.yml
   - type: GitHubOrganization
     url: https://github.com/streamyard
   - type: LinkedIn
