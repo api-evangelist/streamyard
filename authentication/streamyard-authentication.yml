@@ -1,0 +1,19 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/streamyard-openapi.yml
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - authorizationCode
+schemes:
+- name: streamyardBearerAuth
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://streamyard.com/oauth/authorize
+    tokenUrl: https://streamyard.com/oauth/token
+    scopes: 3
+  description: OAuth 2.0 Bearer token. Authenticate via StreamYard's OAuth flow at https://streamyard.com/oauth/authorize.
+  sources:
+  - openapi/streamyard-openapi.yml
