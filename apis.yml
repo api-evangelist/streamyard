@@ -45,6 +45,8 @@ apis:
       - type: OpenAPI
         url: https://api.streamyard.com/openapi.json
 common:
+  - type: AgenticAccess
+    url: agentic-access/streamyard-agentic-access.yml
   - type: DomainSecurity
     url: security/streamyard-domain-security.yml
   - type: Authentication
