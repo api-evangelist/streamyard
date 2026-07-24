@@ -1,0 +1,157 @@
+openapi: 3.1.0
+info:
+  title: StreamYard Broadcasts Destinations API
+  description: The StreamYard API provides programmatic access to StreamYard's professional live streaming and recording studio. Manage broadcasts, destinations (YouTube, Facebook, LinkedIn, Twitch, etc.), recordings, and guest invitations. StreamYard enables simultaneous multi-platform streaming with a browser-based studio. OAuth 2.0 is used for authentication.
+  version: 1.0.0
+  contact:
+    name: StreamYard Developer Support
+    url: https://developers.streamyard.com
+  termsOfService: https://streamyard.com/resources/terms
+servers:
+- url: https://api.streamyard.com
+  description: StreamYard API
+security:
+- streamyardBearerAuth: []
+tags:
+- name: Destinations
+  description: Manage streaming destinations — the platforms where broadcasts are streamed or published. Supported platforms include YouTube, Facebook, LinkedIn, Twitter/X, Twitch, and custom RTMP endpoints.
+paths:
+  /destinations:
+    get:
+      operationId: listDestinations
+      summary: List Destinations
+      description: Returns a list of all streaming destinations connected to the authenticated account. Destinations are platforms like YouTube, Facebook, LinkedIn, Twitch, and custom RTMP endpoints.
+      tags:
+      - Destinations
+      responses:
+        '200':
+          description: A list of connected destinations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Destination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /destinations/{destinationId}:
+    get:
+      operationId: getDestination
+      summary: Get Destination
+      description: Returns details of a specific streaming destination.
+      tags:
+      - Destinations
+      parameters:
+      - name: destinationId
+        in: path
+        required: true
+        description: The identifier of the destination
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The destination details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Destination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteDestination
+      summary: Delete Destination
+      description: Removes a streaming destination from the account.
+      tags:
+      - Destinations
+      parameters:
+      - name: destinationId
+        in: path
+        required: true
+        description: The identifier of the destination
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Destination deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: The error code
+        message:
+          type: string
+          description: A human-readable error message
+    Destination:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the destination
+        platform:
+          type: string
+          enum:
+          - youtube
+          - facebook
+          - linkedin
+          - twitter
+          - twitch
+          - rtmp
+          description: The streaming platform
+        name:
+          type: string
+          description: The display name of the destination (e.g., channel name, page name)
+        accountName:
+          type: string
+          description: The account name on the platform
+        profileImageUrl:
+          type: string
+          format: uri
+          nullable: true
+          description: Profile image URL for the destination account
+        isConnected:
+          type: boolean
+          description: Whether the destination is currently connected and authenticated
+        createdAt:
+          type: string
+          format: date-time
+          description: When the destination was connected
+  responses:
+    Unauthorized:
+      description: Unauthorized — missing or invalid OAuth token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not found — the requested resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    streamyardBearerAuth:
+      type: oauth2
+      description: OAuth 2.0 Bearer token. Authenticate via StreamYard's OAuth flow at https://streamyard.com/oauth/authorize.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://streamyard.com/oauth/authorize
+          tokenUrl: https://streamyard.com/oauth/token
+          scopes:
+            broadcasts: Create and manage broadcasts
+            destinations: View and manage streaming destinations
+            recordings: Access and download recordings
+externalDocs:
+  description: StreamYard API Documentation
+  url: https://developers.streamyard.com/docs

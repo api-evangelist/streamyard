@@ -1,0 +1,431 @@
+openapi: 3.1.0
+info:
+  title: StreamYard Broadcasts API
+  description: The StreamYard API provides programmatic access to StreamYard's professional live streaming and recording studio. Manage broadcasts, destinations (YouTube, Facebook, LinkedIn, Twitch, etc.), recordings, and guest invitations. StreamYard enables simultaneous multi-platform streaming with a browser-based studio. OAuth 2.0 is used for authentication.
+  version: 1.0.0
+  contact:
+    name: StreamYard Developer Support
+    url: https://developers.streamyard.com
+  termsOfService: https://streamyard.com/resources/terms
+servers:
+- url: https://api.streamyard.com
+  description: StreamYard API
+security:
+- streamyardBearerAuth: []
+tags:
+- name: Broadcasts
+  description: Manage live broadcasts and recordings. Broadcasts represent a streaming or recording session in the StreamYard studio.
+paths:
+  /broadcasts:
+    get:
+      operationId: listBroadcasts
+      summary: List Broadcasts
+      description: Returns a list of broadcasts in the authenticated account, sorted by creation date (newest first). Includes both live and completed broadcasts.
+      tags:
+      - Broadcasts
+      parameters:
+      - name: page
+        in: query
+        description: Page number for pagination
+        schema:
+          type: integer
+          default: 1
+      - name: perPage
+        in: query
+        description: Number of broadcasts per page (max 100)
+        schema:
+          type: integer
+          default: 10
+          maximum: 100
+      responses:
+        '200':
+          description: A list of broadcasts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Broadcast'
+                  total:
+                    type: integer
+                    description: Total number of broadcasts
+                  page:
+                    type: integer
+                  perPage:
+                    type: integer
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createBroadcast
+      summary: Create Broadcast
+      description: Creates a new broadcast in the StreamYard studio. A broadcast must be created before going live or recording. You can specify the title, scheduled time, and whether it is a live stream or recording.
+      tags:
+      - Broadcasts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BroadcastCreateRequest'
+      responses:
+        '201':
+          description: Broadcast created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Broadcast'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /broadcasts/{broadcastId}:
+    get:
+      operationId: getBroadcast
+      summary: Get Broadcast
+      description: Returns the details of a specific broadcast including its status, destinations, and recording URLs when available.
+      tags:
+      - Broadcasts
+      parameters:
+      - $ref: '#/components/parameters/BroadcastId'
+      responses:
+        '200':
+          description: The broadcast details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Broadcast'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateBroadcast
+      summary: Update Broadcast
+      description: Updates a broadcast's title, description, or scheduled time. Only broadcasts that have not started can be updated.
+      tags:
+      - Broadcasts
+      parameters:
+      - $ref: '#/components/parameters/BroadcastId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BroadcastUpdateRequest'
+      responses:
+        '200':
+          description: Broadcast updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Broadcast'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteBroadcast
+      summary: Delete Broadcast
+      description: Deletes a broadcast. Only broadcasts that have not started or have completed can be deleted.
+      tags:
+      - Broadcasts
+      parameters:
+      - $ref: '#/components/parameters/BroadcastId'
+      responses:
+        '204':
+          description: Broadcast deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /broadcasts/{broadcastId}/destinations:
+    get:
+      operationId: listBroadcastDestinations
+      summary: List Broadcast Destinations
+      description: Returns the destinations associated with a specific broadcast. Destinations are the platforms where the broadcast will be streamed.
+      tags:
+      - Broadcasts
+      parameters:
+      - $ref: '#/components/parameters/BroadcastId'
+      responses:
+        '200':
+          description: A list of broadcast destinations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/BroadcastDestination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addBroadcastDestination
+      summary: Add Broadcast Destination
+      description: Adds a streaming destination to a broadcast. The destination must be a previously connected platform account. Multiple destinations can be added for simultaneous multi-streaming.
+      tags:
+      - Broadcasts
+      parameters:
+      - $ref: '#/components/parameters/BroadcastId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BroadcastDestinationRequest'
+      responses:
+        '201':
+          description: Destination added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BroadcastDestination'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /broadcasts/{broadcastId}/destinations/{destinationId}:
+    delete:
+      operationId: removeBroadcastDestination
+      summary: Remove Broadcast Destination
+      description: Removes a destination from a broadcast. The broadcast must not be currently live.
+      tags:
+      - Broadcasts
+      parameters:
+      - $ref: '#/components/parameters/BroadcastId'
+      - name: destinationId
+        in: path
+        required: true
+        description: The identifier of the destination
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Destination removed successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Broadcast:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the broadcast
+        title:
+          type: string
+          description: The title of the broadcast
+        description:
+          type: string
+          nullable: true
+          description: The description of the broadcast
+        status:
+          type: string
+          enum:
+          - created
+          - live
+          - completed
+          - cancelled
+          description: The current status of the broadcast
+        type:
+          type: string
+          enum:
+          - live
+          - recording
+          description: Whether this is a live stream or a recording session
+        scheduledAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: The scheduled start time of the broadcast (ISO 8601)
+        startedAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: The actual start time of the broadcast
+        endedAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: The time the broadcast ended
+        studioUrl:
+          type: string
+          format: uri
+          description: The URL to join the broadcast studio
+        guestUrl:
+          type: string
+          format: uri
+          nullable: true
+          description: A shareable URL for guests to join the broadcast
+        createdAt:
+          type: string
+          format: date-time
+          description: When the broadcast was created
+        destinations:
+          type: array
+          items:
+            $ref: '#/components/schemas/BroadcastDestination'
+          description: The destinations associated with this broadcast
+    BroadcastUpdateRequest:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Updated broadcast title
+        description:
+          type: string
+          description: Updated broadcast description
+        scheduledAt:
+          type: string
+          format: date-time
+          description: Updated scheduled start time
+    BroadcastDestinationRequest:
+      type: object
+      required:
+      - destinationId
+      properties:
+        destinationId:
+          type: string
+          description: The ID of the connected destination account to stream to
+        title:
+          type: string
+          description: The title for this platform's stream (overrides broadcast title)
+        description:
+          type: string
+          description: The description for this platform's stream
+        privacy:
+          type: string
+          enum:
+          - public
+          - unlisted
+          - private
+          description: Privacy setting for the stream (where supported by the platform)
+    BroadcastCreateRequest:
+      type: object
+      required:
+      - title
+      properties:
+        title:
+          type: string
+          description: The title of the broadcast
+        description:
+          type: string
+          description: An optional description of the broadcast
+        type:
+          type: string
+          enum:
+          - live
+          - recording
+          default: live
+          description: Whether this is a live stream or recording session
+        scheduledAt:
+          type: string
+          format: date-time
+          description: Optional scheduled start time
+    BroadcastDestination:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the broadcast destination
+        destinationId:
+          type: string
+          description: The identifier of the connected destination account
+        platform:
+          type: string
+          enum:
+          - youtube
+          - facebook
+          - linkedin
+          - twitter
+          - twitch
+          - rtmp
+          description: The streaming platform
+        title:
+          type: string
+          description: The title for this platform's stream
+        description:
+          type: string
+          nullable: true
+          description: The description for this platform's stream
+        status:
+          type: string
+          enum:
+          - pending
+          - live
+          - completed
+          - error
+          description: The streaming status on this destination
+        viewerCount:
+          type: integer
+          nullable: true
+          description: Current viewer count on this destination
+        streamUrl:
+          type: string
+          format: uri
+          nullable: true
+          description: The URL of the stream on the destination platform
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: The error code
+        message:
+          type: string
+          description: A human-readable error message
+  responses:
+    Unauthorized:
+      description: Unauthorized — missing or invalid OAuth token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request — invalid input or missing required fields
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not found — the requested resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    BroadcastId:
+      name: broadcastId
+      in: path
+      required: true
+      description: The unique identifier of the broadcast
+      schema:
+        type: string
+  securitySchemes:
+    streamyardBearerAuth:
+      type: oauth2
+      description: OAuth 2.0 Bearer token. Authenticate via StreamYard's OAuth flow at https://streamyard.com/oauth/authorize.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://streamyard.com/oauth/authorize
+          tokenUrl: https://streamyard.com/oauth/token
+          scopes:
+            broadcasts: Create and manage broadcasts
+            destinations: View and manage streaming destinations
+            recordings: Access and download recordings
+externalDocs:
+  description: StreamYard API Documentation
+  url: https://developers.streamyard.com/docs

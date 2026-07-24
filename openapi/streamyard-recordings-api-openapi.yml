@@ -1,0 +1,182 @@
+openapi: 3.1.0
+info:
+  title: StreamYard Broadcasts Recordings API
+  description: The StreamYard API provides programmatic access to StreamYard's professional live streaming and recording studio. Manage broadcasts, destinations (YouTube, Facebook, LinkedIn, Twitch, etc.), recordings, and guest invitations. StreamYard enables simultaneous multi-platform streaming with a browser-based studio. OAuth 2.0 is used for authentication.
+  version: 1.0.0
+  contact:
+    name: StreamYard Developer Support
+    url: https://developers.streamyard.com
+  termsOfService: https://streamyard.com/resources/terms
+servers:
+- url: https://api.streamyard.com
+  description: StreamYard API
+security:
+- streamyardBearerAuth: []
+tags:
+- name: Recordings
+  description: Access recorded broadcasts. Once a broadcast ends, recordings become available for download.
+paths:
+  /recordings:
+    get:
+      operationId: listRecordings
+      summary: List Recordings
+      description: Returns a list of recordings from completed broadcasts in the authenticated account.
+      tags:
+      - Recordings
+      parameters:
+      - name: page
+        in: query
+        description: Page number for pagination
+        schema:
+          type: integer
+          default: 1
+      - name: perPage
+        in: query
+        description: Number of recordings per page (max 100)
+        schema:
+          type: integer
+          default: 10
+          maximum: 100
+      responses:
+        '200':
+          description: A list of recordings
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Recording'
+                  total:
+                    type: integer
+                  page:
+                    type: integer
+                  perPage:
+                    type: integer
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /recordings/{recordingId}:
+    get:
+      operationId: getRecording
+      summary: Get Recording
+      description: Returns details and download URL for a specific recording. Download URLs are time-limited.
+      tags:
+      - Recordings
+      parameters:
+      - name: recordingId
+        in: path
+        required: true
+        description: The identifier of the recording
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The recording details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recording'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteRecording
+      summary: Delete Recording
+      description: Permanently deletes a recording from the StreamYard account.
+      tags:
+      - Recordings
+      parameters:
+      - name: recordingId
+        in: path
+        required: true
+        description: The identifier of the recording
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Recording deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Recording:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the recording
+        broadcastId:
+          type: string
+          description: The ID of the broadcast this recording came from
+        title:
+          type: string
+          description: The title of the recording (from the broadcast title)
+        duration:
+          type: integer
+          description: The duration of the recording in seconds
+        fileSize:
+          type: integer
+          description: The file size of the recording in bytes
+        downloadUrl:
+          type: string
+          format: uri
+          nullable: true
+          description: Time-limited URL for downloading the recording
+        thumbnailUrl:
+          type: string
+          format: uri
+          nullable: true
+          description: Thumbnail image URL for the recording
+        status:
+          type: string
+          enum:
+          - processing
+          - available
+          - deleted
+          description: The current status of the recording
+        createdAt:
+          type: string
+          format: date-time
+          description: When the recording was created
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: The error code
+        message:
+          type: string
+          description: A human-readable error message
+  responses:
+    Unauthorized:
+      description: Unauthorized — missing or invalid OAuth token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not found — the requested resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    streamyardBearerAuth:
+      type: oauth2
+      description: OAuth 2.0 Bearer token. Authenticate via StreamYard's OAuth flow at https://streamyard.com/oauth/authorize.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://streamyard.com/oauth/authorize
+          tokenUrl: https://streamyard.com/oauth/token
+          scopes:
+            broadcasts: Create and manage broadcasts
+            destinations: View and manage streaming destinations
+            recordings: Access and download recordings
+externalDocs:
+  description: StreamYard API Documentation
+  url: https://developers.streamyard.com/docs
