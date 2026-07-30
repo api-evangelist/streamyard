@@ -6,6 +6,19 @@ description: >-
   display overlays, and manage brand assets. The StreamYard API enables programmatic management of broadcasts,
   destinations, and recordings.
 url: https://raw.githubusercontent.com/api-evangelist/streamyard/refs/heads/main/apis.yml
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 image: https://streamyard.com/assets/images/logo.png
 tags:
   - Broadcasting
@@ -20,31 +33,56 @@ created: '2024-01-01'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: streamyard:streamyard-api
-    name: StreamYard API
-    description: >-
-      The StreamYard API provides programmatic access to manage live broadcasts and recordings. Create and manage
-      broadcasts, add streaming destinations (YouTube, Facebook, LinkedIn, Twitch, Twitter/X, custom RTMP), access
-      recordings, and manage connected destination accounts. Authentication uses OAuth 2.0 with scope-based access
-      control.
-    humanURL: https://developers.streamyard.com/docs
-    baseURL: https://api.streamyard.com
-    tags:
-      - Broadcasting
-      - Live Streaming
-      - Multi-Streaming
-      - Recordings
-      - Video
-    properties:
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/streamyard/refs/heads/main/openapi/streamyard-openapi.yml
-      - type: Documentation
-        url: https://developers.streamyard.com/docs
-      - type: Authentication
-        url: https://developers.streamyard.com/docs/authentication
-      - type: OpenAPI
-        url: https://api.streamyard.com/openapi.json
+- aid: streamyard:streamyard-broadcasts-api
+  name: StreamYard Broadcasts API
+  description: >-
+    Manage live broadcasts and recordings. Broadcasts represent a streaming or recording session in the
+    StreamYard studio.
+  humanURL: https://developers.streamyard.com/docs
+  baseURL: https://api.streamyard.com
+  tags:
+  - Broadcasts
+  properties:
+  - type: OpenAPI
+    url: openapi/streamyard-broadcasts-api-openapi.yml
+  - type: Documentation
+    url: https://developers.streamyard.com/docs
+  - type: Authentication
+    url: https://developers.streamyard.com/docs/authentication
+- aid: streamyard:streamyard-destinations-api
+  name: StreamYard Destinations API
+  description: >-
+    Manage streaming destinations — the platforms where broadcasts are streamed or published. Supported
+    platforms include YouTube, Facebook, LinkedIn, Twitter/X, Twitch, and custom RTMP endpoints.
+  humanURL: https://developers.streamyard.com/docs
+  baseURL: https://api.streamyard.com
+  tags:
+  - Destinations
+  properties:
+  - type: OpenAPI
+    url: openapi/streamyard-destinations-api-openapi.yml
+  - type: Documentation
+    url: https://developers.streamyard.com/docs
+  - type: Authentication
+    url: https://developers.streamyard.com/docs/authentication
+- aid: streamyard:streamyard-recordings-api
+  name: StreamYard Recordings API
+  description: >-
+    Access recorded broadcasts. Once a broadcast ends, recordings become available for download.
+  humanURL: https://developers.streamyard.com/docs
+  baseURL: https://api.streamyard.com
+  tags:
+  - Recordings
+  properties:
+  - type: OpenAPI
+    url: openapi/streamyard-recordings-api-openapi.yml
+  - type: Documentation
+    url: https://developers.streamyard.com/docs
+  - type: Authentication
+    url: https://developers.streamyard.com/docs/authentication
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/streamyard/overview
   - type: AgenticAccess
     url: agentic-access/streamyard-agentic-access.yml
   - type: DomainSecurity
