@@ -1,0 +1,1799 @@
+{
+  "info": {
+    "_postman_id": "d7fa562c-379d-432e-896a-0fd9c893244f",
+    "name": "StreamYard Broadcasts API",
+    "description": "The StreamYard API provides programmatic access to StreamYard's professional live streaming and recording studio. Manage broadcasts, destinations (YouTube, Facebook, LinkedIn, Twitch, etc.), recordings, and guest invitations. StreamYard enables simultaneous multi-platform streaming with a browser-based studio. OAuth 2.0 is used for authentication.\n\nContact Support:\n Name: StreamYard Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:05:48.000Z",
+    "updatedAt": "2026-07-28T03:05:48.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d7fa562c-379d-432e-896a-0fd9c893244f"
+  },
+  "item": [
+    {
+      "name": "broadcasts",
+      "item": [
+        {
+          "name": "{broadcastId}",
+          "item": [
+            {
+              "name": "destinations",
+              "item": [
+                {
+                  "name": "{destinationId}",
+                  "item": [
+                    {
+                      "name": "Remove Broadcast Destination",
+                      "id": "04631473-2ea0-4a76-a4ed-4185d23d27a6",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/broadcasts/:broadcastId/destinations/:destinationId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "broadcasts",
+                            ":broadcastId",
+                            "destinations",
+                            ":destinationId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "e2ad3ae6-1ed8-4fa6-b789-dcd343e99183",
+                              "key": "broadcastId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the broadcast"
+                            },
+                            {
+                              "id": "63289a6b-b719-4311-b291-32d32ae06e25",
+                              "key": "destinationId",
+                              "value": "<string>",
+                              "description": "(Required) The identifier of the destination"
+                            }
+                          ]
+                        },
+                        "description": "Removes a destination from a broadcast. The broadcast must not be currently live."
+                      },
+                      "response": [
+                        {
+                          "id": "aeb7b4bf-f4d0-4bb8-93df-862e3f33dc0f",
+                          "name": "Destination removed successfully",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/broadcasts/:broadcastId/destinations/:destinationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "broadcasts",
+                                ":broadcastId",
+                                "destinations",
+                                ":destinationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "broadcastId"
+                                },
+                                {
+                                  "key": "destinationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:05:48.000Z",
+                          "updatedAt": "2026-07-28T03:05:48.000Z",
+                          "uid": "35240-aeb7b4bf-f4d0-4bb8-93df-862e3f33dc0f"
+                        },
+                        {
+                          "id": "7be49ed1-3faa-4bba-b990-4c3470d02786",
+                          "name": "Unauthorized \u2014 missing or invalid OAuth token",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/broadcasts/:broadcastId/destinations/:destinationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "broadcasts",
+                                ":broadcastId",
+                                "destinations",
+                                ":destinationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "broadcastId"
+                                },
+                                {
+                                  "key": "destinationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:05:48.000Z",
+                          "updatedAt": "2026-07-28T03:05:48.000Z",
+                          "uid": "35240-7be49ed1-3faa-4bba-b990-4c3470d02786"
+                        },
+                        {
+                          "id": "78867978-74d5-4fa5-a829-b4321abc5fc5",
+                          "name": "Not found \u2014 the requested resource does not exist",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/broadcasts/:broadcastId/destinations/:destinationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "broadcasts",
+                                ":broadcastId",
+                                "destinations",
+                                ":destinationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "broadcastId"
+                                },
+                                {
+                                  "key": "destinationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:05:48.000Z",
+                          "updatedAt": "2026-07-28T03:05:48.000Z",
+                          "uid": "35240-78867978-74d5-4fa5-a829-b4321abc5fc5"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:05:48.000Z",
+                      "updatedAt": "2026-07-28T03:05:48.000Z",
+                      "uid": "35240-04631473-2ea0-4a76-a4ed-4185d23d27a6"
+                    }
+                  ],
+                  "id": "b495fe55-6ab0-47b1-bd50-da9d70ecaa4f",
+                  "createdAt": "2026-07-28T03:05:48.000Z",
+                  "updatedAt": "2026-07-28T03:05:48.000Z",
+                  "uid": "35240-b495fe55-6ab0-47b1-bd50-da9d70ecaa4f"
+                },
+                {
+                  "name": "List Broadcast Destinations",
+                  "id": "d89234d6-58e3-4e82-82ef-693856c0a9f4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/broadcasts/:broadcastId/destinations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "broadcasts",
+                        ":broadcastId",
+                        "destinations"
+                      ],
+                      "variable": [
+                        {
+                          "id": "1f5d6145-5d96-4bcb-88a6-db368298b36d",
+                          "key": "broadcastId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the broadcast"
+                        }
+                      ]
+                    },
+                    "description": "Returns the destinations associated with a specific broadcast. Destinations are the platforms where the broadcast will be streamed."
+                  },
+                  "response": [
+                    {
+                      "id": "0f475c2a-ff5b-45a2-8148-7979a205aa3e",
+                      "name": "A list of broadcast destinations",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/broadcasts/:broadcastId/destinations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "broadcasts",
+                            ":broadcastId",
+                            "destinations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "broadcastId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"destinationId\": \"<string>\",\n      \"platform\": \"youtube\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"pending\",\n      \"viewerCount\": \"<integer>\",\n      \"streamUrl\": \"<uri>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"destinationId\": \"<string>\",\n      \"platform\": \"youtube\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"error\",\n      \"viewerCount\": \"<integer>\",\n      \"streamUrl\": \"<uri>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:05:48.000Z",
+                      "updatedAt": "2026-07-28T03:05:48.000Z",
+                      "uid": "35240-0f475c2a-ff5b-45a2-8148-7979a205aa3e"
+                    },
+                    {
+                      "id": "89a7e3ab-c033-4406-ac4c-d11cee9783ac",
+                      "name": "Unauthorized \u2014 missing or invalid OAuth token",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/broadcasts/:broadcastId/destinations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "broadcasts",
+                            ":broadcastId",
+                            "destinations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "broadcastId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:05:48.000Z",
+                      "updatedAt": "2026-07-28T03:05:48.000Z",
+                      "uid": "35240-89a7e3ab-c033-4406-ac4c-d11cee9783ac"
+                    },
+                    {
+                      "id": "8b539db3-fd87-49fe-815e-bc10c11e85e9",
+                      "name": "Not found \u2014 the requested resource does not exist",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/broadcasts/:broadcastId/destinations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "broadcasts",
+                            ":broadcastId",
+                            "destinations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "broadcastId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:05:48.000Z",
+                      "updatedAt": "2026-07-28T03:05:48.000Z",
+                      "uid": "35240-8b539db3-fd87-49fe-815e-bc10c11e85e9"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:05:48.000Z",
+                  "updatedAt": "2026-07-28T03:05:48.000Z",
+                  "uid": "35240-d89234d6-58e3-4e82-82ef-693856c0a9f4"
+                },
+                {
+                  "name": "Add Broadcast Destination",
+                  "id": "5b0f5181-0c16-459d-9d45-ce2cedde84a3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"destinationId\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"privacy\": \"public\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/broadcasts/:broadcastId/destinations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "broadcasts",
+                        ":broadcastId",
+                        "destinations"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ce5e6278-dd26-4d24-9803-596488bb41e8",
+                          "key": "broadcastId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the broadcast"
+                        }
+                      ]
+                    },
+                    "description": "Adds a streaming destination to a broadcast. The destination must be a previously connected platform account. Multiple destinations can be added for simultaneous multi-streaming."
+                  },
+                  "response": [
+                    {
+                      "id": "a3b7dee9-bd71-4ee4-9ffc-2d71af5749fb",
+                      "name": "Destination added successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"destinationId\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"privacy\": \"public\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/broadcasts/:broadcastId/destinations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "broadcasts",
+                            ":broadcastId",
+                            "destinations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "broadcastId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"destinationId\": \"<string>\",\n  \"platform\": \"linkedin\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"error\",\n  \"viewerCount\": \"<integer>\",\n  \"streamUrl\": \"<uri>\"\n}",
+                      "createdAt": "2026-07-28T03:05:48.000Z",
+                      "updatedAt": "2026-07-28T03:05:48.000Z",
+                      "uid": "35240-a3b7dee9-bd71-4ee4-9ffc-2d71af5749fb"
+                    },
+                    {
+                      "id": "357a3212-ebe9-4153-b1e1-ee3a1be725d5",
+                      "name": "Bad request \u2014 invalid input or missing required fields",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"destinationId\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"privacy\": \"public\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/broadcasts/:broadcastId/destinations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "broadcasts",
+                            ":broadcastId",
+                            "destinations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "broadcastId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:05:48.000Z",
+                      "updatedAt": "2026-07-28T03:05:48.000Z",
+                      "uid": "35240-357a3212-ebe9-4153-b1e1-ee3a1be725d5"
+                    },
+                    {
+                      "id": "e97bc233-a288-47ce-bc5c-3bf8d25d8461",
+                      "name": "Unauthorized \u2014 missing or invalid OAuth token",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"destinationId\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"privacy\": \"public\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/broadcasts/:broadcastId/destinations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "broadcasts",
+                            ":broadcastId",
+                            "destinations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "broadcastId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:05:48.000Z",
+                      "updatedAt": "2026-07-28T03:05:48.000Z",
+                      "uid": "35240-e97bc233-a288-47ce-bc5c-3bf8d25d8461"
+                    },
+                    {
+                      "id": "4cc6995c-ae6b-47e2-8b5b-b1edace47ded",
+                      "name": "Not found \u2014 the requested resource does not exist",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"destinationId\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"privacy\": \"public\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/broadcasts/:broadcastId/destinations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "broadcasts",
+                            ":broadcastId",
+                            "destinations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "broadcastId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:05:48.000Z",
+                      "updatedAt": "2026-07-28T03:05:48.000Z",
+                      "uid": "35240-4cc6995c-ae6b-47e2-8b5b-b1edace47ded"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:05:48.000Z",
+                  "updatedAt": "2026-07-28T03:05:48.000Z",
+                  "uid": "35240-5b0f5181-0c16-459d-9d45-ce2cedde84a3"
+                }
+              ],
+              "id": "a06c9a70-84db-4623-84d7-779225978a9c",
+              "createdAt": "2026-07-28T03:05:48.000Z",
+              "updatedAt": "2026-07-28T03:05:48.000Z",
+              "uid": "35240-a06c9a70-84db-4623-84d7-779225978a9c"
+            },
+            {
+              "name": "Get Broadcast",
+              "id": "aec1027e-2e56-4698-b0ed-d1789a5e7a13",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/broadcasts/:broadcastId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "broadcasts",
+                    ":broadcastId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "9b984d6f-3537-40fe-8a80-61a451b35dea",
+                      "key": "broadcastId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the broadcast"
+                    }
+                  ]
+                },
+                "description": "Returns the details of a specific broadcast including its status, destinations, and recording URLs when available."
+              },
+              "response": [
+                {
+                  "id": "20dddfc4-e0f4-40fe-a468-99d1b958f485",
+                  "name": "The broadcast details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/broadcasts/:broadcastId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "broadcasts",
+                        ":broadcastId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "broadcastId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"live\",\n  \"type\": \"recording\",\n  \"scheduledAt\": \"<dateTime>\",\n  \"startedAt\": \"<dateTime>\",\n  \"endedAt\": \"<dateTime>\",\n  \"studioUrl\": \"<uri>\",\n  \"guestUrl\": \"<uri>\",\n  \"createdAt\": \"<dateTime>\",\n  \"destinations\": [\n    {\n      \"id\": \"<string>\",\n      \"destinationId\": \"<string>\",\n      \"platform\": \"twitch\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"completed\",\n      \"viewerCount\": \"<integer>\",\n      \"streamUrl\": \"<uri>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"destinationId\": \"<string>\",\n      \"platform\": \"rtmp\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"completed\",\n      \"viewerCount\": \"<integer>\",\n      \"streamUrl\": \"<uri>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:05:48.000Z",
+                  "updatedAt": "2026-07-28T03:05:48.000Z",
+                  "uid": "35240-20dddfc4-e0f4-40fe-a468-99d1b958f485"
+                },
+                {
+                  "id": "3339d02d-d392-4410-ae81-16ef80700d10",
+                  "name": "Unauthorized \u2014 missing or invalid OAuth token",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/broadcasts/:broadcastId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "broadcasts",
+                        ":broadcastId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "broadcastId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:05:48.000Z",
+                  "updatedAt": "2026-07-28T03:05:48.000Z",
+                  "uid": "35240-3339d02d-d392-4410-ae81-16ef80700d10"
+                },
+                {
+                  "id": "7e06b020-de65-4bb2-bed9-5844785afc84",
+                  "name": "Not found \u2014 the requested resource does not exist",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/broadcasts/:broadcastId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "broadcasts",
+                        ":broadcastId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "broadcastId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:05:48.000Z",
+                  "updatedAt": "2026-07-28T03:05:48.000Z",
+                  "uid": "35240-7e06b020-de65-4bb2-bed9-5844785afc84"
+                }
+              ],
+              "createdAt": "2026-07-28T03:05:48.000Z",
+              "updatedAt": "2026-07-28T03:05:48.000Z",
+              "uid": "35240-aec1027e-2e56-4698-b0ed-d1789a5e7a13"
+            },
+            {
+              "name": "Update Broadcast",
+              "id": "e86bffef-aea2-479f-ba14-c6684127535b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"scheduledAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/broadcasts/:broadcastId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "broadcasts",
+                    ":broadcastId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "78c0727d-df78-4e50-a3ae-61de21c68826",
+                      "key": "broadcastId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the broadcast"
+                    }
+                  ]
+                },
+                "description": "Updates a broadcast's title, description, or scheduled time. Only broadcasts that have not started can be updated."
+              },
+              "response": [
+                {
+                  "id": "84bde6c9-a56d-4584-b33a-9cd5eadf15d2",
+                  "name": "Broadcast updated successfully",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"scheduledAt\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/broadcasts/:broadcastId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "broadcasts",
+                        ":broadcastId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "broadcastId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"live\",\n  \"type\": \"recording\",\n  \"scheduledAt\": \"<dateTime>\",\n  \"startedAt\": \"<dateTime>\",\n  \"endedAt\": \"<dateTime>\",\n  \"studioUrl\": \"<uri>\",\n  \"guestUrl\": \"<uri>\",\n  \"createdAt\": \"<dateTime>\",\n  \"destinations\": [\n    {\n      \"id\": \"<string>\",\n      \"destinationId\": \"<string>\",\n      \"platform\": \"twitch\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"completed\",\n      \"viewerCount\": \"<integer>\",\n      \"streamUrl\": \"<uri>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"destinationId\": \"<string>\",\n      \"platform\": \"rtmp\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"completed\",\n      \"viewerCount\": \"<integer>\",\n      \"streamUrl\": \"<uri>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:05:48.000Z",
+                  "updatedAt": "2026-07-28T03:05:48.000Z",
+                  "uid": "35240-84bde6c9-a56d-4584-b33a-9cd5eadf15d2"
+                },
+                {
+                  "id": "58ce7b1b-84dd-4b62-ad97-10848cbd2a62",
+                  "name": "Bad request \u2014 invalid input or missing required fields",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"scheduledAt\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/broadcasts/:broadcastId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "broadcasts",
+                        ":broadcastId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "broadcastId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:05:48.000Z",
+                  "updatedAt": "2026-07-28T03:05:48.000Z",
+                  "uid": "35240-58ce7b1b-84dd-4b62-ad97-10848cbd2a62"
+                },
+                {
+                  "id": "9e050bf0-9958-44eb-8cfc-6df13617b9a6",
+                  "name": "Unauthorized \u2014 missing or invalid OAuth token",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"scheduledAt\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/broadcasts/:broadcastId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "broadcasts",
+                        ":broadcastId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "broadcastId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:05:48.000Z",
+                  "updatedAt": "2026-07-28T03:05:48.000Z",
+                  "uid": "35240-9e050bf0-9958-44eb-8cfc-6df13617b9a6"
+                },
+                {
+                  "id": "4322b493-8b4e-48a6-bb85-08b58e46721e",
+                  "name": "Not found \u2014 the requested resource does not exist",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"scheduledAt\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/broadcasts/:broadcastId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "broadcasts",
+                        ":broadcastId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "broadcastId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:05:48.000Z",
+                  "updatedAt": "2026-07-28T03:05:48.000Z",
+                  "uid": "35240-4322b493-8b4e-48a6-bb85-08b58e46721e"
+                }
+              ],
+              "createdAt": "2026-07-28T03:05:48.000Z",
+              "updatedAt": "2026-07-28T03:05:48.000Z",
+              "uid": "35240-e86bffef-aea2-479f-ba14-c6684127535b"
+            },
+            {
+              "name": "Delete Broadcast",
+              "id": "156fbd79-85ce-4c8a-b8c1-f25c5e35e837",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/broadcasts/:broadcastId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "broadcasts",
+                    ":broadcastId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "043b9d84-1087-45a8-b4ab-3b4e3a61ff41",
+                      "key": "broadcastId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the broadcast"
+                    }
+                  ]
+                },
+                "description": "Deletes a broadcast. Only broadcasts that have not started or have completed can be deleted."
+              },
+              "response": [
+                {
+                  "id": "f46619d4-89a7-4230-8726-9b057e01de91",
+                  "name": "Broadcast deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/broadcasts/:broadcastId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "broadcasts",
+                        ":broadcastId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "broadcastId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:05:48.000Z",
+                  "updatedAt": "2026-07-28T03:05:48.000Z",
+                  "uid": "35240-f46619d4-89a7-4230-8726-9b057e01de91"
+                },
+                {
+                  "id": "83ccf394-8542-4698-98dc-01240487621a",
+                  "name": "Unauthorized \u2014 missing or invalid OAuth token",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/broadcasts/:broadcastId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "broadcasts",
+                        ":broadcastId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "broadcastId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:05:48.000Z",
+                  "updatedAt": "2026-07-28T03:05:48.000Z",
+                  "uid": "35240-83ccf394-8542-4698-98dc-01240487621a"
+                },
+                {
+                  "id": "b385dcf8-4e30-4284-8410-87dca2a2e0fa",
+                  "name": "Not found \u2014 the requested resource does not exist",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/broadcasts/:broadcastId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "broadcasts",
+                        ":broadcastId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "broadcastId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:05:48.000Z",
+                  "updatedAt": "2026-07-28T03:05:48.000Z",
+                  "uid": "35240-b385dcf8-4e30-4284-8410-87dca2a2e0fa"
+                }
+              ],
+              "createdAt": "2026-07-28T03:05:48.000Z",
+              "updatedAt": "2026-07-28T03:05:48.000Z",
+              "uid": "35240-156fbd79-85ce-4c8a-b8c1-f25c5e35e837"
+            }
+          ],
+          "id": "9720908c-5f29-4b18-8de2-94c85f499c23",
+          "createdAt": "2026-07-28T03:05:48.000Z",
+          "updatedAt": "2026-07-28T03:05:48.000Z",
+          "uid": "35240-9720908c-5f29-4b18-8de2-94c85f499c23"
+        },
+        {
+          "name": "List Broadcasts",
+          "id": "7da0a0c9-ea7f-4fc8-8bd2-1f83aa764bee",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/broadcasts?page=1&perPage=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "broadcasts"
+              ],
+              "query": [
+                {
+                  "description": "Page number for pagination",
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "description": "Number of broadcasts per page (max 100)",
+                  "key": "perPage",
+                  "value": "10"
+                }
+              ]
+            },
+            "description": "Returns a list of broadcasts in the authenticated account, sorted by creation date (newest first). Includes both live and completed broadcasts."
+          },
+          "response": [
+            {
+              "id": "64b79936-2a76-42dc-959f-43465667c8ca",
+              "name": "A list of broadcasts",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/broadcasts?page=1&perPage=10",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "broadcasts"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number for pagination",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of broadcasts per page (max 100)",
+                      "key": "perPage",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"completed\",\n      \"type\": \"recording\",\n      \"scheduledAt\": \"<dateTime>\",\n      \"startedAt\": \"<dateTime>\",\n      \"endedAt\": \"<dateTime>\",\n      \"studioUrl\": \"<uri>\",\n      \"guestUrl\": \"<uri>\",\n      \"createdAt\": \"<dateTime>\",\n      \"destinations\": [\n        {\n          \"id\": \"<string>\",\n          \"destinationId\": \"<string>\",\n          \"platform\": \"rtmp\",\n          \"title\": \"<string>\",\n          \"description\": \"<string>\",\n          \"status\": \"error\",\n          \"viewerCount\": \"<integer>\",\n          \"streamUrl\": \"<uri>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"destinationId\": \"<string>\",\n          \"platform\": \"twitter\",\n          \"title\": \"<string>\",\n          \"description\": \"<string>\",\n          \"status\": \"pending\",\n          \"viewerCount\": \"<integer>\",\n          \"streamUrl\": \"<uri>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"cancelled\",\n      \"type\": \"recording\",\n      \"scheduledAt\": \"<dateTime>\",\n      \"startedAt\": \"<dateTime>\",\n      \"endedAt\": \"<dateTime>\",\n      \"studioUrl\": \"<uri>\",\n      \"guestUrl\": \"<uri>\",\n      \"createdAt\": \"<dateTime>\",\n      \"destinations\": [\n        {\n          \"id\": \"<string>\",\n          \"destinationId\": \"<string>\",\n          \"platform\": \"twitch\",\n          \"title\": \"<string>\",\n          \"description\": \"<string>\",\n          \"status\": \"pending\",\n          \"viewerCount\": \"<integer>\",\n          \"streamUrl\": \"<uri>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"destinationId\": \"<string>\",\n          \"platform\": \"twitch\",\n          \"title\": \"<string>\",\n          \"description\": \"<string>\",\n          \"status\": \"completed\",\n          \"viewerCount\": \"<integer>\",\n          \"streamUrl\": \"<uri>\"\n        }\n      ]\n    }\n  ],\n  \"total\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"perPage\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:05:48.000Z",
+              "updatedAt": "2026-07-28T03:05:48.000Z",
+              "uid": "35240-64b79936-2a76-42dc-959f-43465667c8ca"
+            },
+            {
+              "id": "b079419a-be90-403a-a4c8-2c92113b8374",
+              "name": "Unauthorized \u2014 missing or invalid OAuth token",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/broadcasts?page=1&perPage=10",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "broadcasts"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number for pagination",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of broadcasts per page (max 100)",
+                      "key": "perPage",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:05:48.000Z",
+              "updatedAt": "2026-07-28T03:05:48.000Z",
+              "uid": "35240-b079419a-be90-403a-a4c8-2c92113b8374"
+            }
+          ],
+          "createdAt": "2026-07-28T03:05:48.000Z",
+          "updatedAt": "2026-07-28T03:05:48.000Z",
+          "uid": "35240-7da0a0c9-ea7f-4fc8-8bd2-1f83aa764bee"
+        },
+        {
+          "name": "Create Broadcast",
+          "id": "e4202f1f-cc62-4819-b07f-c1bb30d5c7da",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"live\",\n  \"scheduledAt\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/broadcasts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "broadcasts"
+              ]
+            },
+            "description": "Creates a new broadcast in the StreamYard studio. A broadcast must be created before going live or recording. You can specify the title, scheduled time, and whether it is a live stream or recording."
+          },
+          "response": [
+            {
+              "id": "9fae4aff-30b0-4776-babd-eaecc1255dbe",
+              "name": "Broadcast created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"live\",\n  \"scheduledAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/broadcasts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "broadcasts"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"live\",\n  \"type\": \"recording\",\n  \"scheduledAt\": \"<dateTime>\",\n  \"startedAt\": \"<dateTime>\",\n  \"endedAt\": \"<dateTime>\",\n  \"studioUrl\": \"<uri>\",\n  \"guestUrl\": \"<uri>\",\n  \"createdAt\": \"<dateTime>\",\n  \"destinations\": [\n    {\n      \"id\": \"<string>\",\n      \"destinationId\": \"<string>\",\n      \"platform\": \"twitch\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"completed\",\n      \"viewerCount\": \"<integer>\",\n      \"streamUrl\": \"<uri>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"destinationId\": \"<string>\",\n      \"platform\": \"rtmp\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"completed\",\n      \"viewerCount\": \"<integer>\",\n      \"streamUrl\": \"<uri>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T03:05:48.000Z",
+              "updatedAt": "2026-07-28T03:05:48.000Z",
+              "uid": "35240-9fae4aff-30b0-4776-babd-eaecc1255dbe"
+            },
+            {
+              "id": "fb953daa-1ed1-4889-81cc-9d9fc71af194",
+              "name": "Bad request \u2014 invalid input or missing required fields",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"live\",\n  \"scheduledAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/broadcasts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "broadcasts"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:05:48.000Z",
+              "updatedAt": "2026-07-28T03:05:48.000Z",
+              "uid": "35240-fb953daa-1ed1-4889-81cc-9d9fc71af194"
+            },
+            {
+              "id": "62ae162e-6ee5-437e-9300-509048158358",
+              "name": "Unauthorized \u2014 missing or invalid OAuth token",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"live\",\n  \"scheduledAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/broadcasts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "broadcasts"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:05:48.000Z",
+              "updatedAt": "2026-07-28T03:05:48.000Z",
+              "uid": "35240-62ae162e-6ee5-437e-9300-509048158358"
+            }
+          ],
+          "createdAt": "2026-07-28T03:05:48.000Z",
+          "updatedAt": "2026-07-28T03:05:48.000Z",
+          "uid": "35240-e4202f1f-cc62-4819-b07f-c1bb30d5c7da"
+        }
+      ],
+      "id": "bde91503-3fb9-48eb-88a2-e778202ca8e5",
+      "createdAt": "2026-07-28T03:05:48.000Z",
+      "updatedAt": "2026-07-28T03:05:48.000Z",
+      "uid": "35240-bde91503-3fb9-48eb-88a2-e778202ca8e5"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "broadcasts destinations recordings",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://streamyard.com/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://streamyard.com/oauth/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.streamyard.com"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "provider": "streamyard",
+  "sources": [
+    "streamyard-broadcasts-api-openapi.yml",
+    "streamyard-destinations-api-openapi.yml",
+    "streamyard-recordings-api-openapi.yml"
+  ],
+  "outputs": [
+    "streamyard-broadcasts-api-openapi.yml",
+    "streamyard-destinations-api-openapi.yml",
+    "streamyard-recordings-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

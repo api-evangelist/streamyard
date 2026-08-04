@@ -1,0 +1,573 @@
+{
+  "info": {
+    "_postman_id": "6c047aef-31cc-4eba-94e3-469453580bfc",
+    "name": "StreamYard Broadcasts Recordings API",
+    "description": "The StreamYard API provides programmatic access to StreamYard's professional live streaming and recording studio. Manage broadcasts, destinations (YouTube, Facebook, LinkedIn, Twitch, etc.), recordings, and guest invitations. StreamYard enables simultaneous multi-platform streaming with a browser-based studio. OAuth 2.0 is used for authentication.\n\nContact Support:\n Name: StreamYard Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:05:50.000Z",
+    "updatedAt": "2026-07-28T03:05:50.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6c047aef-31cc-4eba-94e3-469453580bfc"
+  },
+  "item": [
+    {
+      "name": "recordings",
+      "item": [
+        {
+          "name": "{recordingId}",
+          "item": [
+            {
+              "name": "Get Recording",
+              "id": "4a91a5ea-c572-49e6-811b-f924d0f4946c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/recordings/:recordingId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "recordings",
+                    ":recordingId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "6da1f087-4feb-4608-ab27-72592018e9e1",
+                      "key": "recordingId",
+                      "value": "<string>",
+                      "description": "(Required) The identifier of the recording"
+                    }
+                  ]
+                },
+                "description": "Returns details and download URL for a specific recording. Download URLs are time-limited."
+              },
+              "response": [
+                {
+                  "id": "63804cf0-3f56-4aa1-b275-d65b25e584bb",
+                  "name": "The recording details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/recordings/:recordingId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "recordings",
+                        ":recordingId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "recordingId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"broadcastId\": \"<string>\",\n  \"title\": \"<string>\",\n  \"duration\": \"<integer>\",\n  \"fileSize\": \"<integer>\",\n  \"downloadUrl\": \"<uri>\",\n  \"thumbnailUrl\": \"<uri>\",\n  \"status\": \"deleted\",\n  \"createdAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T03:05:50.000Z",
+                  "updatedAt": "2026-07-28T03:05:50.000Z",
+                  "uid": "35240-63804cf0-3f56-4aa1-b275-d65b25e584bb"
+                },
+                {
+                  "id": "e662e37f-abe7-4c08-b746-440205ec31e7",
+                  "name": "Unauthorized \u2014 missing or invalid OAuth token",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/recordings/:recordingId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "recordings",
+                        ":recordingId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "recordingId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:05:50.000Z",
+                  "updatedAt": "2026-07-28T03:05:50.000Z",
+                  "uid": "35240-e662e37f-abe7-4c08-b746-440205ec31e7"
+                },
+                {
+                  "id": "b91bbe50-6515-42c1-a02c-1661846aff0f",
+                  "name": "Not found \u2014 the requested resource does not exist",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/recordings/:recordingId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "recordings",
+                        ":recordingId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "recordingId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:05:50.000Z",
+                  "updatedAt": "2026-07-28T03:05:50.000Z",
+                  "uid": "35240-b91bbe50-6515-42c1-a02c-1661846aff0f"
+                }
+              ],
+              "createdAt": "2026-07-28T03:05:50.000Z",
+              "updatedAt": "2026-07-28T03:05:50.000Z",
+              "uid": "35240-4a91a5ea-c572-49e6-811b-f924d0f4946c"
+            },
+            {
+              "name": "Delete Recording",
+              "id": "2d8e9ef8-1638-4374-b835-9f1db78f2ae0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/recordings/:recordingId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "recordings",
+                    ":recordingId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "8b63b949-f134-42e0-8354-8475d84b906a",
+                      "key": "recordingId",
+                      "value": "<string>",
+                      "description": "(Required) The identifier of the recording"
+                    }
+                  ]
+                },
+                "description": "Permanently deletes a recording from the StreamYard account."
+              },
+              "response": [
+                {
+                  "id": "82e18c06-482d-4eb0-912e-8494f41c485d",
+                  "name": "Recording deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/recordings/:recordingId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "recordings",
+                        ":recordingId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "recordingId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:05:50.000Z",
+                  "updatedAt": "2026-07-28T03:05:50.000Z",
+                  "uid": "35240-82e18c06-482d-4eb0-912e-8494f41c485d"
+                },
+                {
+                  "id": "e6b53143-96bb-41f9-8b6e-0192252dd65b",
+                  "name": "Unauthorized \u2014 missing or invalid OAuth token",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/recordings/:recordingId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "recordings",
+                        ":recordingId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "recordingId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:05:50.000Z",
+                  "updatedAt": "2026-07-28T03:05:50.000Z",
+                  "uid": "35240-e6b53143-96bb-41f9-8b6e-0192252dd65b"
+                },
+                {
+                  "id": "c0cb5b89-2698-4584-9603-efd2fdfa137e",
+                  "name": "Not found \u2014 the requested resource does not exist",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/recordings/:recordingId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "recordings",
+                        ":recordingId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "recordingId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:05:50.000Z",
+                  "updatedAt": "2026-07-28T03:05:50.000Z",
+                  "uid": "35240-c0cb5b89-2698-4584-9603-efd2fdfa137e"
+                }
+              ],
+              "createdAt": "2026-07-28T03:05:50.000Z",
+              "updatedAt": "2026-07-28T03:05:50.000Z",
+              "uid": "35240-2d8e9ef8-1638-4374-b835-9f1db78f2ae0"
+            }
+          ],
+          "id": "c0df1ad9-647d-41fe-aff7-adb3b5d177c8",
+          "createdAt": "2026-07-28T03:05:50.000Z",
+          "updatedAt": "2026-07-28T03:05:50.000Z",
+          "uid": "35240-c0df1ad9-647d-41fe-aff7-adb3b5d177c8"
+        },
+        {
+          "name": "List Recordings",
+          "id": "04f28a2c-6cb4-4108-9b67-d7f79590e99b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/recordings?page=1&perPage=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "recordings"
+              ],
+              "query": [
+                {
+                  "description": "Page number for pagination",
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "description": "Number of recordings per page (max 100)",
+                  "key": "perPage",
+                  "value": "10"
+                }
+              ]
+            },
+            "description": "Returns a list of recordings from completed broadcasts in the authenticated account."
+          },
+          "response": [
+            {
+              "id": "4a192164-c659-4e92-af10-14fb609842c3",
+              "name": "A list of recordings",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/recordings?page=1&perPage=10",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "recordings"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number for pagination",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of recordings per page (max 100)",
+                      "key": "perPage",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"broadcastId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"duration\": \"<integer>\",\n      \"fileSize\": \"<integer>\",\n      \"downloadUrl\": \"<uri>\",\n      \"thumbnailUrl\": \"<uri>\",\n      \"status\": \"available\",\n      \"createdAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"broadcastId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"duration\": \"<integer>\",\n      \"fileSize\": \"<integer>\",\n      \"downloadUrl\": \"<uri>\",\n      \"thumbnailUrl\": \"<uri>\",\n      \"status\": \"available\",\n      \"createdAt\": \"<dateTime>\"\n    }\n  ],\n  \"total\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"perPage\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:05:50.000Z",
+              "updatedAt": "2026-07-28T03:05:50.000Z",
+              "uid": "35240-4a192164-c659-4e92-af10-14fb609842c3"
+            },
+            {
+              "id": "640fb812-8fdd-4a69-bc77-1749b4dbaa9f",
+              "name": "Unauthorized \u2014 missing or invalid OAuth token",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/recordings?page=1&perPage=10",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "recordings"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number for pagination",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of recordings per page (max 100)",
+                      "key": "perPage",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:05:50.000Z",
+              "updatedAt": "2026-07-28T03:05:50.000Z",
+              "uid": "35240-640fb812-8fdd-4a69-bc77-1749b4dbaa9f"
+            }
+          ],
+          "createdAt": "2026-07-28T03:05:50.000Z",
+          "updatedAt": "2026-07-28T03:05:50.000Z",
+          "uid": "35240-04f28a2c-6cb4-4108-9b67-d7f79590e99b"
+        }
+      ],
+      "id": "179d5e68-c78b-4b34-833d-4f9cc51a9c44",
+      "createdAt": "2026-07-28T03:05:50.000Z",
+      "updatedAt": "2026-07-28T03:05:50.000Z",
+      "uid": "35240-179d5e68-c78b-4b34-833d-4f9cc51a9c44"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "broadcasts destinations recordings",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://streamyard.com/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://streamyard.com/oauth/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.streamyard.com"
+    }
+  ]
+}
