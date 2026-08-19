@@ -1,0 +1,79 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "StreamYard Broadcasts Destinations API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://streamyard.com/oauth/authorize",
+      "accessTokenUrl": "https://streamyard.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Destinations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Destinations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.streamyard.com/destinations"
+          },
+          "docs": "Returns a list of all streaming destinations connected to the authenticated account. Destinations are platforms like YouTube, Facebook, LinkedIn, Twitch, and custom RTMP endpoints."
+        },
+        {
+          "info": {
+            "name": "Get Destination",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.streamyard.com/destinations/:destinationId",
+            "params": [
+              {
+                "name": "destinationId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the destination"
+              }
+            ]
+          },
+          "docs": "Returns details of a specific streaming destination."
+        },
+        {
+          "info": {
+            "name": "Delete Destination",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.streamyard.com/destinations/:destinationId",
+            "params": [
+              {
+                "name": "destinationId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the destination"
+              }
+            ]
+          },
+          "docs": "Removes a streaming destination from the account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,601 @@
+{
+  "item": [
+    {
+      "id": "ba9c4842-3ee5-4675-8629-339a8a6d01bd",
+      "name": "Recordings",
+      "description": {
+        "content": "Access recorded broadcasts. Once a broadcast ends, recordings become available for download.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3a764b17-567e-465e-827e-1b2be106abd1",
+          "name": "List Recordings",
+          "request": {
+            "name": "List Recordings",
+            "description": {
+              "content": "Returns a list of recordings from completed broadcasts in the authenticated account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recordings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "10",
+                  "description": "Number of recordings per page (max 100)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e1b66d1f-c1cf-4fb7-9d41-402b26469282",
+              "name": "A list of recordings",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"broadcastId\": \"string\",\n      \"title\": \"string\",\n      \"duration\": 9956,\n      \"fileSize\": 5280,\n      \"downloadUrl\": \"https://KZDvOPaxJgGDWVgwMVyM.fnlymJQJaSg+oiDe2VzmPKPGpwI.L69D0NEHbJRIlD3+bT1AdiVuPGOBeZHwDIhjpIWj1\",\n      \"thumbnailUrl\": \"https://FeysUHRTrDGSlRlijWoWpxmQ.ugxJJ0N.UAvcRMJ52OvNW9Zcc6xpSpROMsQVtik81yEuNsZLq6OoZ8iz6mi+yuNV4-f4uA8Ick\",\n      \"status\": \"deleted\",\n      \"createdAt\": \"1966-01-15T20:34:03.541Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"broadcastId\": \"string\",\n      \"title\": \"string\",\n      \"duration\": 8072,\n      \"fileSize\": 8082,\n      \"downloadUrl\": \"http://yRZVRvyuNaMDERpktAEqyLBQ.ivwVs8AL3nOmGP9-Lz+f7R4TZOwfb8n,IvourXN5NhoIriyaA+,sd2zN-xIp6Ws6ZI+Ydqtm8s3xMkcTosF\",\n      \"thumbnailUrl\": \"http://LvBWH.xyrxviLJZLQwZYo-zp5uoVGHcQLtrMgvyySak4cKa9lEQj\",\n      \"status\": \"deleted\",\n      \"createdAt\": \"1972-02-06T04:26:02.778Z\"\n    }\n  ],\n  \"total\": 695,\n  \"page\": 5704,\n  \"perPage\": 6579\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "986d00de-7ab3-4c03-95af-bc516e27a109",
+              "name": "Unauthorized — missing or invalid OAuth token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "edf5b6f9-7d87-4a16-8515-1317b0a64d2b",
+          "name": "Get Recording",
+          "request": {
+            "name": "Get Recording",
+            "description": {
+              "content": "Returns details and download URL for a specific recording. Download URLs are time-limited.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recordings",
+                ":recordingId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "recordingId",
+                  "description": "(Required) The identifier of the recording"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "163a09b1-619c-460b-b2e0-2be1902eaf86",
+              "name": "The recording details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings",
+                    ":recordingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordingId",
+                      "description": "(Required) The identifier of the recording"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"broadcastId\": \"string\",\n  \"title\": \"string\",\n  \"duration\": 2087,\n  \"fileSize\": 3031,\n  \"downloadUrl\": \"https://fLUZ.bjweg3xjM9Tc44fzUJ5EUeCxVSrXyiSJwUVLJ3\",\n  \"thumbnailUrl\": \"https://XVFWbYRkoLwuIyKPixktvGiERrtHHsDO.cnOI3O-aly4KrlG+gY,eEpMADJ5tylJdCfiWAwpXVaA+NhZXAqYKZoVTPG,Aar3\",\n  \"status\": \"available\",\n  \"createdAt\": \"2022-04-14T09:33:40.617Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "397b44a4-c96f-4031-b019-813a3a2bffb6",
+              "name": "Unauthorized — missing or invalid OAuth token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings",
+                    ":recordingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordingId",
+                      "description": "(Required) The identifier of the recording"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d7da6f7-33a1-40dc-a109-c197521e31fa",
+              "name": "Not found — the requested resource does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings",
+                    ":recordingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordingId",
+                      "description": "(Required) The identifier of the recording"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "86decfd0-104a-4892-9695-87c370ce9ef8",
+          "name": "Delete Recording",
+          "request": {
+            "name": "Delete Recording",
+            "description": {
+              "content": "Permanently deletes a recording from the StreamYard account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recordings",
+                ":recordingId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "recordingId",
+                  "description": "(Required) The identifier of the recording"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9bf0fb19-90c0-4638-b992-8a66a03322f9",
+              "name": "Recording deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings",
+                    ":recordingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordingId",
+                      "description": "(Required) The identifier of the recording"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "62d42688-8ab4-45f4-8b4c-8afffc522c60",
+              "name": "Unauthorized — missing or invalid OAuth token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings",
+                    ":recordingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordingId",
+                      "description": "(Required) The identifier of the recording"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d8e3c93-dacc-47ee-b9b2-d0836bd067b5",
+              "name": "Not found — the requested resource does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings",
+                    ":recordingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordingId",
+                      "description": "(Required) The identifier of the recording"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.streamyard.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "broadcasts destinations recordings"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://streamyard.com/oauth/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://streamyard.com/oauth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a1e8e963-8704-4dbe-ab09-c05a547dea0b",
+    "name": "StreamYard Broadcasts Recordings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The StreamYard API provides programmatic access to StreamYard's professional live streaming and recording studio. Manage broadcasts, destinations (YouTube, Facebook, LinkedIn, Twitch, etc.), recordings, and guest invitations. StreamYard enables simultaneous multi-platform streaming with a browser-based studio. OAuth 2.0 is used for authentication.\n\nContact Support:\n Name: StreamYard Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

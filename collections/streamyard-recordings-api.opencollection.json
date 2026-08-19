@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "StreamYard Broadcasts Recordings API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://streamyard.com/oauth/authorize",
+      "accessTokenUrl": "https://streamyard.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Recordings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Recordings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.streamyard.com/recordings",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "Number of recordings per page (max 100)"
+              }
+            ]
+          },
+          "docs": "Returns a list of recordings from completed broadcasts in the authenticated account."
+        },
+        {
+          "info": {
+            "name": "Get Recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.streamyard.com/recordings/:recordingId",
+            "params": [
+              {
+                "name": "recordingId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the recording"
+              }
+            ]
+          },
+          "docs": "Returns details and download URL for a specific recording. Download URLs are time-limited."
+        },
+        {
+          "info": {
+            "name": "Delete Recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.streamyard.com/recordings/:recordingId",
+            "params": [
+              {
+                "name": "recordingId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the recording"
+              }
+            ]
+          },
+          "docs": "Permanently deletes a recording from the StreamYard account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

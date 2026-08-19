@@ -1,0 +1,570 @@
+{
+  "item": [
+    {
+      "id": "b218f859-4ae1-4987-a407-e929624386c3",
+      "name": "Destinations",
+      "description": {
+        "content": "Manage streaming destinations — the platforms where broadcasts are streamed or published. Supported platforms include YouTube, Facebook, LinkedIn, Twitter/X, Twitch, and custom RTMP endpoints.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3901cbb8-6247-472b-9fa3-d442b3c92e48",
+          "name": "List Destinations",
+          "request": {
+            "name": "List Destinations",
+            "description": {
+              "content": "Returns a list of all streaming destinations connected to the authenticated account. Destinations are platforms like YouTube, Facebook, LinkedIn, Twitch, and custom RTMP endpoints.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "destinations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "85d2af3a-4d47-4000-ba2c-f6840d412133",
+              "name": "A list of connected destinations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "destinations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"platform\": \"linkedin\",\n      \"name\": \"string\",\n      \"accountName\": \"string\",\n      \"profileImageUrl\": \"https://nUpTYvOIZWovIQcUcQVcUguLjIsq.bphhdB,MLT6ACqSZ3ZjhzDL4aGlDfzrRsQOC\",\n      \"isConnected\": true,\n      \"createdAt\": \"2025-05-09T01:28:39.985Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"platform\": \"twitter\",\n      \"name\": \"string\",\n      \"accountName\": \"string\",\n      \"profileImageUrl\": \"https://HG.bjnH1I30dw1GC-mCLiUgeAO1oLw5zvOVoH8\",\n      \"isConnected\": false,\n      \"createdAt\": \"1976-04-24T11:06:53.938Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a822668a-0a1f-45a6-81c7-1dc46ba4e76e",
+              "name": "Unauthorized — missing or invalid OAuth token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "destinations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b358762e-bbc3-4feb-a217-89e7997e2b04",
+          "name": "Get Destination",
+          "request": {
+            "name": "Get Destination",
+            "description": {
+              "content": "Returns details of a specific streaming destination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "destinations",
+                ":destinationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "destinationId",
+                  "description": "(Required) The identifier of the destination"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9d9fbd87-6d18-4dba-9d6d-4b6429417df0",
+              "name": "The destination details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "destinations",
+                    ":destinationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "destinationId",
+                      "description": "(Required) The identifier of the destination"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"platform\": \"facebook\",\n  \"name\": \"string\",\n  \"accountName\": \"string\",\n  \"profileImageUrl\": \"http://kx.azuYWidXaljgNBkKf-\",\n  \"isConnected\": true,\n  \"createdAt\": \"1979-11-12T05:21:58.566Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9fd20456-540b-4a8a-86e8-f5d4fc7d3e3c",
+              "name": "Unauthorized — missing or invalid OAuth token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "destinations",
+                    ":destinationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "destinationId",
+                      "description": "(Required) The identifier of the destination"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b0446fd4-35cd-404f-8ea7-af178fac6c57",
+              "name": "Not found — the requested resource does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "destinations",
+                    ":destinationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "destinationId",
+                      "description": "(Required) The identifier of the destination"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "15738b64-b531-48bf-aa55-17ec20b647c4",
+          "name": "Delete Destination",
+          "request": {
+            "name": "Delete Destination",
+            "description": {
+              "content": "Removes a streaming destination from the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "destinations",
+                ":destinationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "destinationId",
+                  "description": "(Required) The identifier of the destination"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4f25d29c-4581-4b46-b2a1-c69c889d6797",
+              "name": "Destination deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "destinations",
+                    ":destinationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "destinationId",
+                      "description": "(Required) The identifier of the destination"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a917f817-a45d-4df9-923a-3e29b458d932",
+              "name": "Unauthorized — missing or invalid OAuth token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "destinations",
+                    ":destinationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "destinationId",
+                      "description": "(Required) The identifier of the destination"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b81c502-bb6d-4fde-9f84-6f8ed16a5ba8",
+              "name": "Not found — the requested resource does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "destinations",
+                    ":destinationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "destinationId",
+                      "description": "(Required) The identifier of the destination"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.streamyard.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "broadcasts destinations recordings"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://streamyard.com/oauth/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://streamyard.com/oauth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f3ec0c81-032e-4cbc-a416-009e5a2113ce",
+    "name": "StreamYard Broadcasts Destinations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The StreamYard API provides programmatic access to StreamYard's professional live streaming and recording studio. Manage broadcasts, destinations (YouTube, Facebook, LinkedIn, Twitch, etc.), recordings, and guest invitations. StreamYard enables simultaneous multi-platform streaming with a browser-based studio. OAuth 2.0 is used for authentication.\n\nContact Support:\n Name: StreamYard Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,198 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "StreamYard Broadcasts API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://streamyard.com/oauth/authorize",
+      "accessTokenUrl": "https://streamyard.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Broadcasts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Broadcasts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.streamyard.com/broadcasts",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "Number of broadcasts per page (max 100)"
+              }
+            ]
+          },
+          "docs": "Returns a list of broadcasts in the authenticated account, sorted by creation date (newest first). Includes both live and completed broadcasts."
+        },
+        {
+          "info": {
+            "name": "Create Broadcast",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.streamyard.com/broadcasts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new broadcast in the StreamYard studio. A broadcast must be created before going live or recording. You can specify the title, scheduled time, and whether it is a live stream or recording."
+        },
+        {
+          "info": {
+            "name": "Get Broadcast",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.streamyard.com/broadcasts/:broadcastId",
+            "params": [
+              {
+                "name": "broadcastId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the broadcast"
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific broadcast including its status, destinations, and recording URLs when available."
+        },
+        {
+          "info": {
+            "name": "Update Broadcast",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.streamyard.com/broadcasts/:broadcastId",
+            "params": [
+              {
+                "name": "broadcastId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the broadcast"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a broadcast's title, description, or scheduled time. Only broadcasts that have not started can be updated."
+        },
+        {
+          "info": {
+            "name": "Delete Broadcast",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.streamyard.com/broadcasts/:broadcastId",
+            "params": [
+              {
+                "name": "broadcastId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the broadcast"
+              }
+            ]
+          },
+          "docs": "Deletes a broadcast. Only broadcasts that have not started or have completed can be deleted."
+        },
+        {
+          "info": {
+            "name": "List Broadcast Destinations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.streamyard.com/broadcasts/:broadcastId/destinations",
+            "params": [
+              {
+                "name": "broadcastId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the broadcast"
+              }
+            ]
+          },
+          "docs": "Returns the destinations associated with a specific broadcast. Destinations are the platforms where the broadcast will be streamed."
+        },
+        {
+          "info": {
+            "name": "Add Broadcast Destination",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.streamyard.com/broadcasts/:broadcastId/destinations",
+            "params": [
+              {
+                "name": "broadcastId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the broadcast"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a streaming destination to a broadcast. The destination must be a previously connected platform account. Multiple destinations can be added for simultaneous multi-streaming."
+        },
+        {
+          "info": {
+            "name": "Remove Broadcast Destination",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.streamyard.com/broadcasts/:broadcastId/destinations/:destinationId",
+            "params": [
+              {
+                "name": "broadcastId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the broadcast"
+              },
+              {
+                "name": "destinationId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the destination"
+              }
+            ]
+          },
+          "docs": "Removes a destination from a broadcast. The broadcast must not be currently live."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
