@@ -46,7 +46,7 @@ tags_raw:
   - Video
 type: Index
 access: 3rd-Party
-position: Consumer
+position: Consuming
 created: '2024-01-01'
 modified: '2026-05-19'
 specificationVersion: '0.23'
