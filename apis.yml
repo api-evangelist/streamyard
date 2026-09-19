@@ -36,7 +36,7 @@ tags:
   - Broadcasting
   - Live Streaming
   - Multistreaming
-  - Recordings
+  - Recording
   - Video
 tags_raw:
   - Broadcasting
@@ -59,6 +59,8 @@ apis:
   humanURL: https://developers.streamyard.com/docs
   baseURL: https://api.streamyard.com
   tags:
+  - Broadcast
+  tags_raw:
   - Broadcasts
   properties:
   - type: OpenAPI
@@ -75,6 +77,8 @@ apis:
   humanURL: https://developers.streamyard.com/docs
   baseURL: https://api.streamyard.com
   tags:
+  - Destination
+  tags_raw:
   - Destinations
   properties:
   - type: OpenAPI
@@ -90,6 +94,8 @@ apis:
   humanURL: https://developers.streamyard.com/docs
   baseURL: https://api.streamyard.com
   tags:
+  - Recording
+  tags_raw:
   - Recordings
   properties:
   - type: OpenAPI
