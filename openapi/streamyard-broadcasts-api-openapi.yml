@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: StreamYard Broadcasts API
   description: The StreamYard API provides programmatic access to StreamYard's professional live streaming and recording studio. Manage broadcasts, destinations (YouTube, Facebook, LinkedIn, Twitch, etc.), recordings, and guest invitations. StreamYard enables simultaneous multi-platform streaming with a browser-based studio. OAuth 2.0 is used for authentication.
@@ -219,6 +219,71 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: The error code
+        message:
+          type: string
+          description: A human-readable error message
+    BroadcastUpdateRequest:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Updated broadcast title
+        description:
+          type: string
+          description: Updated broadcast description
+        scheduledAt:
+          type: string
+          format: date-time
+          description: Updated scheduled start time
+    BroadcastDestination:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the broadcast destination
+        destinationId:
+          type: string
+          description: The identifier of the connected destination account
+        platform:
+          type: string
+          enum:
+          - youtube
+          - facebook
+          - linkedin
+          - twitter
+          - twitch
+          - rtmp
+          description: The streaming platform
+        title:
+          type: string
+          description: The title for this platform's stream
+        description:
+          type: string
+          nullable: true
+          description: The description for this platform's stream
+        status:
+          type: string
+          enum:
+          - pending
+          - live
+          - completed
+          - error
+          description: The streaming status on this destination
+        viewerCount:
+          type: integer
+          nullable: true
+          description: Current viewer count on this destination
+        streamUrl:
+          type: string
+          format: uri
+          nullable: true
+          description: The URL of the stream on the destination platform
     Broadcast:
       type: object
       properties:
@@ -279,40 +344,6 @@ components:
           items:
             $ref: '#/components/schemas/BroadcastDestination'
           description: The destinations associated with this broadcast
-    BroadcastUpdateRequest:
-      type: object
-      properties:
-        title:
-          type: string
-          description: Updated broadcast title
-        description:
-          type: string
-          description: Updated broadcast description
-        scheduledAt:
-          type: string
-          format: date-time
-          description: Updated scheduled start time
-    BroadcastDestinationRequest:
-      type: object
-      required:
-      - destinationId
-      properties:
-        destinationId:
-          type: string
-          description: The ID of the connected destination account to stream to
-        title:
-          type: string
-          description: The title for this platform's stream (overrides broadcast title)
-        description:
-          type: string
-          description: The description for this platform's stream
-        privacy:
-          type: string
-          enum:
-          - public
-          - unlisted
-          - private
-          description: Privacy setting for the stream (where supported by the platform)
     BroadcastCreateRequest:
       type: object
       required:
@@ -335,65 +366,28 @@ components:
           type: string
           format: date-time
           description: Optional scheduled start time
-    BroadcastDestination:
+    BroadcastDestinationRequest:
       type: object
+      required:
+      - destinationId
       properties:
-        id:
-          type: string
-          description: The unique identifier of the broadcast destination
         destinationId:
           type: string
-          description: The identifier of the connected destination account
-        platform:
-          type: string
-          enum:
-          - youtube
-          - facebook
-          - linkedin
-          - twitter
-          - twitch
-          - rtmp
-          description: The streaming platform
+          description: The ID of the connected destination account to stream to
         title:
           type: string
-          description: The title for this platform's stream
+          description: The title for this platform's stream (overrides broadcast title)
         description:
           type: string
-          nullable: true
           description: The description for this platform's stream
-        status:
+        privacy:
           type: string
           enum:
-          - pending
-          - live
-          - completed
-          - error
-          description: The streaming status on this destination
-        viewerCount:
-          type: integer
-          nullable: true
-          description: Current viewer count on this destination
-        streamUrl:
-          type: string
-          format: uri
-          nullable: true
-          description: The URL of the stream on the destination platform
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: The error code
-        message:
-          type: string
-          description: A human-readable error message
+          - public
+          - unlisted
+          - private
+          description: Privacy setting for the stream (where supported by the platform)
   responses:
-    Unauthorized:
-      description: Unauthorized — missing or invalid OAuth token
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     BadRequest:
       description: Bad request — invalid input or missing required fields
       content:
@@ -402,6 +396,12 @@ components:
             $ref: '#/components/schemas/Error'
     NotFound:
       description: Not found — the requested resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized — missing or invalid OAuth token
       content:
         application/json:
           schema:
