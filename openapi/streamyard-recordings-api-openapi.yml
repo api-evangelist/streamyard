@@ -104,19 +104,28 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    Unauthorized:
-      description: Unauthorized — missing or invalid OAuth token
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     NotFound:
       description: Not found — the requested resource does not exist
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized — missing or invalid OAuth token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: The error code
+        message:
+          type: string
+          description: A human-readable error message
     Recording:
       type: object
       properties:
@@ -156,15 +165,6 @@ components:
           type: string
           format: date-time
           description: When the recording was created
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: The error code
-        message:
-          type: string
-          description: A human-readable error message
   securitySchemes:
     streamyardBearerAuth:
       type: oauth2

@@ -218,6 +218,25 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: Not found — the requested resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request — invalid input or missing required fields
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized — missing or invalid OAuth token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Broadcast:
       type: object
@@ -279,6 +298,19 @@ components:
           items:
             $ref: '#/components/schemas/BroadcastDestination'
           description: The destinations associated with this broadcast
+    BroadcastUpdateRequest:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Updated broadcast title
+        description:
+          type: string
+          description: Updated broadcast description
+        scheduledAt:
+          type: string
+          format: date-time
+          description: Updated scheduled start time
     BroadcastDestination:
       type: object
       properties:
@@ -322,6 +354,15 @@ components:
           format: uri
           nullable: true
           description: The URL of the stream on the destination platform
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: The error code
+        message:
+          type: string
+          description: A human-readable error message
     BroadcastCreateRequest:
       type: object
       required:
@@ -344,28 +385,6 @@ components:
           type: string
           format: date-time
           description: Optional scheduled start time
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: The error code
-        message:
-          type: string
-          description: A human-readable error message
-    BroadcastUpdateRequest:
-      type: object
-      properties:
-        title:
-          type: string
-          description: Updated broadcast title
-        description:
-          type: string
-          description: Updated broadcast description
-        scheduledAt:
-          type: string
-          format: date-time
-          description: Updated scheduled start time
     BroadcastDestinationRequest:
       type: object
       required:
@@ -387,25 +406,6 @@ components:
           - unlisted
           - private
           description: Privacy setting for the stream (where supported by the platform)
-  responses:
-    Unauthorized:
-      description: Unauthorized — missing or invalid OAuth token
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Not found — the requested resource does not exist
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request — invalid input or missing required fields
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     BroadcastId:
       name: broadcastId
