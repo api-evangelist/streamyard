@@ -97,15 +97,6 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: The error code
-        message:
-          type: string
-          description: A human-readable error message
     Destination:
       type: object
       properties:
@@ -140,6 +131,15 @@ components:
           type: string
           format: date-time
           description: When the destination was connected
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: The error code
+        message:
+          type: string
+          description: A human-readable error message
   securitySchemes:
     streamyardBearerAuth:
       type: oauth2

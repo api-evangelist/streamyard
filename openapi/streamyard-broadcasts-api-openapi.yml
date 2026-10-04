@@ -218,25 +218,6 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: Not found — the requested resource does not exist
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request — invalid input or missing required fields
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Unauthorized — missing or invalid OAuth token
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
     Broadcast:
       type: object
@@ -298,71 +279,6 @@ components:
           items:
             $ref: '#/components/schemas/BroadcastDestination'
           description: The destinations associated with this broadcast
-    BroadcastUpdateRequest:
-      type: object
-      properties:
-        title:
-          type: string
-          description: Updated broadcast title
-        description:
-          type: string
-          description: Updated broadcast description
-        scheduledAt:
-          type: string
-          format: date-time
-          description: Updated scheduled start time
-    BroadcastDestination:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the broadcast destination
-        destinationId:
-          type: string
-          description: The identifier of the connected destination account
-        platform:
-          type: string
-          enum:
-          - youtube
-          - facebook
-          - linkedin
-          - twitter
-          - twitch
-          - rtmp
-          description: The streaming platform
-        title:
-          type: string
-          description: The title for this platform's stream
-        description:
-          type: string
-          nullable: true
-          description: The description for this platform's stream
-        status:
-          type: string
-          enum:
-          - pending
-          - live
-          - completed
-          - error
-          description: The streaming status on this destination
-        viewerCount:
-          type: integer
-          nullable: true
-          description: Current viewer count on this destination
-        streamUrl:
-          type: string
-          format: uri
-          nullable: true
-          description: The URL of the stream on the destination platform
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: The error code
-        message:
-          type: string
-          description: A human-readable error message
     BroadcastCreateRequest:
       type: object
       required:
@@ -406,6 +322,71 @@ components:
           - unlisted
           - private
           description: Privacy setting for the stream (where supported by the platform)
+    BroadcastDestination:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the broadcast destination
+        destinationId:
+          type: string
+          description: The identifier of the connected destination account
+        platform:
+          type: string
+          enum:
+          - youtube
+          - facebook
+          - linkedin
+          - twitter
+          - twitch
+          - rtmp
+          description: The streaming platform
+        title:
+          type: string
+          description: The title for this platform's stream
+        description:
+          type: string
+          nullable: true
+          description: The description for this platform's stream
+        status:
+          type: string
+          enum:
+          - pending
+          - live
+          - completed
+          - error
+          description: The streaming status on this destination
+        viewerCount:
+          type: integer
+          nullable: true
+          description: Current viewer count on this destination
+        streamUrl:
+          type: string
+          format: uri
+          nullable: true
+          description: The URL of the stream on the destination platform
+    BroadcastUpdateRequest:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Updated broadcast title
+        description:
+          type: string
+          description: Updated broadcast description
+        scheduledAt:
+          type: string
+          format: date-time
+          description: Updated scheduled start time
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: The error code
+        message:
+          type: string
+          description: A human-readable error message
   parameters:
     BroadcastId:
       name: broadcastId
@@ -414,6 +395,25 @@ components:
       description: The unique identifier of the broadcast
       schema:
         type: string
+  responses:
+    NotFound:
+      description: Not found — the requested resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized — missing or invalid OAuth token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request — invalid input or missing required fields
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     streamyardBearerAuth:
       type: oauth2
