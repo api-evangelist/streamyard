@@ -1,4 +1,4 @@
-# StreamYard (streamyard)
+# StreamYard
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,74 +66,172 @@
 
 StreamYard is a professional live streaming and recording studio in the browser. Stream directly to multiple platforms simultaneously including YouTube, Facebook, LinkedIn, Twitch, and Twitter/X. Interview remote guests, share screens, display overlays, and manage brand assets. The StreamYard API enables programmatic management of broadcasts, destinations, and recordings.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/streamyard/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/streamyard/refs/heads/main/apis.yml)
+**Areas:** Broadcasting · Live Streaming · Multistreaming · Recording · Video
 
-## Scope
+## StreamYard on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for StreamYard is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/streamyard/](https://apis.io/providers/streamyard/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (3)
 
-- Broadcasting
-- Live Streaming
-- Multi-Streaming
-- Recordings
-- Video
+- [StreamYard Broadcasts API](https://apis.io/apis/streamyard/streamyard-broadcasts-api/) — Manage live broadcasts and recordings. Broadcasts represent a streaming or recording session in the StreamYard studio.
+- [StreamYard Destinations API](https://apis.io/apis/streamyard/streamyard-destinations-api/) — Manage streaming destinations — the platforms where broadcasts are streamed or published. Supported platforms include YouTube, Facebook, LinkedIn,…
+- [StreamYard Recordings API](https://apis.io/apis/streamyard/streamyard-recordings-api/) — Access recorded broadcasts. Once a broadcast ends, recordings become available for download.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2024-01-01
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### StreamYard API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The StreamYard API provides programmatic access to manage live broadcasts and recordings. Create and manage broadcasts, add streaming destinations (YouTube, Facebook, LinkedIn, Twitch, Twitter/X, custom RTMP), access recordings, and manage connected destination accounts. Authentication uses OAuth 2.0 with scope-based access control.
+- [Streamyard Agentic Access](https://apis.io/agentic-access/streamyard/streamyard-agentic-access/)
 
-- **Human URL:** [https://developers.streamyard.com/docs](https://developers.streamyard.com/docs)
-- **Base URL:** `https://api.streamyard.com`
+#### JSON Schema (1)
 
-#### Tags
+The data models the API reads and writes.
 
-- Broadcasting
-- Live Streaming
-- Multi-Streaming
-- Recordings
-- Video
+- [StreamYard Broadcast](https://apis.io/schemas/streamyard/streamyard-broadcast/)
 
-#### Properties
+#### JSON Structure (1)
 
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/streamyard/refs/heads/main/openapi/streamyard-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Documentation](https://developers.streamyard.com/docs)
-- [Authentication](https://developers.streamyard.com/docs/authentication)
-- [OpenAPI](https://api.streamyard.com/openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/streamyard.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/streamyard.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [Streamyard Broadcast Structure](https://apis.io/json-structure/streamyard/streamyard-broadcast-structure/)
 
-- [GitHub Organization](https://github.com/streamyard)
-- [LinkedIn](https://www.linkedin.com/company/streamyard)
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Streamyard Context](https://apis.io/jsonld/streamyard/streamyard-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [StreamYard Vocabulary](https://apis.io/vocabularies/streamyard/streamyard-vocabulary/)
+
+#### Examples (2)
+
+Example requests and responses.
+
+- [Streamyard Create Broadcast Example](https://apis.io/examples/streamyard/streamyard-create-broadcast-example/)
+- [Streamyard List Broadcasts Example](https://apis.io/examples/streamyard/streamyard-list-broadcasts-example/)
+
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [StreamYard API](https://apis.io/collections/streamyard/open-streamyard/)
+- [StreamYard Broadcasts API](https://apis.io/collections/streamyard/open-streamyard-broadcasts-api/)
+- [StreamYard Broadcasts Destinations API](https://apis.io/collections/streamyard/open-streamyard-destinations-api/)
+- [StreamYard Broadcasts Recordings API](https://apis.io/collections/streamyard/open-streamyard-recordings-api/)
+- [StreamYard Broadcasts API](https://apis.io/collections/streamyard/postman-streamyard-broadcasts-api/)
+- [StreamYard Broadcasts Destinations API](https://apis.io/collections/streamyard/postman-streamyard-destinations-api/)
+- [StreamYard Broadcasts Recordings API](https://apis.io/collections/streamyard/postman-streamyard-recordings-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [StreamYard — jsonschema rules](https://apis.io/rules/streamyard/streamyard-jsonschema-spectral-rules/)
+- [StreamYard API Rules](https://apis.io/rules/streamyard/streamyard-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Streamyard Authentication](https://apis.io/security/streamyard/streamyard-authentication/)
+- [Streamyard Domain Security](https://apis.io/security/streamyard/streamyard-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Streamyard Scopes](https://apis.io/scopes/streamyard/streamyard-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Streamyard Plans Pricing](https://apis.io/plans/streamyard/streamyard-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Streamyard Rate Limits](https://apis.io/rate-limits/streamyard/streamyard-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Streamyard Finops](https://apis.io/finops/streamyard/streamyard-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://streamyard.com)
-- [Developer  Portal](https://developers.streamyard.com)
 - [Documentation](https://developers.streamyard.com/docs)
-- [Dashboard](https://streamyard.com/dashboard)
-- [Sign Up](https://streamyard.com/signup)
-- [Login](https://streamyard.com/login)
 - [Pricing](https://streamyard.com/pricing)
-- [Blog](https://streamyard.com/blog)
-- [Terms of Service](https://streamyard.com/resources/terms)
-- [Privacy Policy](https://streamyard.com/resources/privacy)
-- [Status Page](https://status.streamyard.com)
 - [Support](https://streamyard.com/resources/support)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/streamyard/refs/heads/main/openapi/streamyard-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/streamyard/refs/heads/main/json-schema/streamyard-broadcast-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [J S O N L D Context](https://raw.githubusercontent.com/api-evangelist/streamyard/refs/heads/main/json-ld/streamyard-context.jsonld)
+- [Blog](https://streamyard.com/blog)
+- [Terms of service](https://streamyard.com/resources/terms)
+- [Privacy policy](https://streamyard.com/resources/privacy)
+- [GitHub](https://github.com/streamyard)
+- [Status](https://status.streamyard.com)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 30.5** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 58.8 |
+| Contract governance | 13.6 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 1.2 |
+| Access clarity | 14.5 |
+
+**Agent readiness 22.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | documented (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 26.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/streamyard/](https://apis.io/providers/streamyard/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for StreamYard: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/streamyard/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
